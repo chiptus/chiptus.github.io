@@ -1,0 +1,50 @@
+html, body {
+  height:100%;
+  width: 100%;
+}
+
+.pad-section {
+  padding: 50px 0;
+}
+
+
+#home {
+  background-image :url(https://s32.postimg.org/6tnig8bf9/IMG_20150925_174314.jpg);
+  
+  
+  
+}
+
+#about {
+    background-color: aliceblue;
+}
+
+#portfolio {
+  background-color: gainsboro;
+}
+
+#portfolio img {
+  height:40%;
+  border-radius:5px;
+}
+
+#contact a{
+  text-align: center;
+}
+
+#contact img {
+  width:64px;
+  height:64px;
+}
+
+.page {
+  min-height: 100%;
+  width: 100%;
+  background-size:cover;
+
+}
+
+body { 
+  padding-top: 50px; 
+}
+
