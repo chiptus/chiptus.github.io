@@ -9,10 +9,7 @@ html, body {
 
 
 #home {
-  background-image :url(https://s32.postimg.org/6tnig8bf9/IMG_20150925_174314.jpg);
-  
-  
-  
+  background-image :url(https://s32.postimg.org/6tnig8bf9/IMG_20150925_174314.jpg); 
 }
 
 #about {
@@ -21,11 +18,16 @@ html, body {
 
 #portfolio {
   background-color: gainsboro;
+  text-align: center;
+}
+
+#portfolio a {
+  height:40%;
+  border-radius:5px;
 }
 
 #portfolio img {
-  height:40%;
-  border-radius:5px;
+  height: 90%;
 }
 
 #contact a{
