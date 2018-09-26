@@ -6,6 +6,7 @@
 body {
   background: #182529;
   font-size: 16px;
+  height: 100vh;
 }
 
 .container {
@@ -48,4 +49,16 @@ body {
 .menu li:hover {
   color: red;
   background-color: blue;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: calc(100% - 150px);
+}
+
+img.under-construction {
+  height: 50vh;
 }
