@@ -1,0 +1,10 @@
+{
+  "name": "personal-site-design",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Chaim Lando <chiptus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server"
+  }
+}

@@ -1,52 +1,51 @@
-html, body {
-  height:100%;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #182529;
+  font-size: 16px;
+}
+
+.container {
+  height: 100%;
+  /* color: white; */
+}
+
+.top-bar {
+  height: 100px;
+}
+
+.menu {
   width: 100%;
+  background: white;
 }
 
-.pad-section {
-  padding: 50px 0;
+.menu ul {
+  width: 80%;
+  height: 50px;
+
+  margin: 0 auto;
+  padding: 0 1em;
+
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-
-#home {
-  background-image :url(https://s32.postimg.org/6tnig8bf9/IMG_20150925_174314.jpg); 
+.menu li {
+  cursor: pointer;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#about {
-    background-color: aliceblue;
+.menu li:hover {
+  color: red;
+  background-color: blue;
 }
-
-#portfolio {
-  background-color: gainsboro;
-  text-align: center;
-}
-
-#portfolio a {
-  height:40%;
-  border-radius:5px;
-}
-
-#portfolio img {
-  height: 90%;
-}
-
-#contact a{
-  text-align: center;
-}
-
-#contact img {
-  width:64px;
-  height:64px;
-}
-
-.page {
-  min-height: 100%;
-  width: 100%;
-  background-size:cover;
-
-}
-
-body { 
-  padding-top: 50px; 
-}
-

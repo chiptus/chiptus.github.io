@@ -1,0 +1,54 @@
+:root {
+  --spotlight-width: 80vw;
+  --spotlight-height: 90vh;
+  --spotlight-sourcex: 0.5;
+  --spotlight-sourcey: 0vh;
+}
+
+.spotlight-container {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.spotlight {
+  position: relative;
+  height: 100%;
+  text-align: center;
+}
+
+.spotlight::before,
+.spotlight::after {
+  content: '';
+}
+
+.spotlight::before {
+  display: inline-block;
+  margin-top: var(--spotlight-sourcey);
+  height: 0;
+  width: 0;
+  border: 3px solid;
+  border-top-width: 0;
+  border-bottom-width: calc(var(--spotlight-height) - var(--spotlight-sourcey));
+  border-left-width: calc(var(--spotlight-sourcex) * var(--spotlight-width));
+  border-right-width: calc(
+    (1 - var(--spotlight-sourcex)) * var(--spotlight-width)
+  );
+  border-color: transparent transparent #d6b24a;
+}
+
+.spotlight::after {
+  bottom: 27px;
+  width: var(--spotlight-width);
+  height: 45px;
+  background: #e9d59d;
+  border-radius: 200%;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0px 2px 0px #eedeb2;
+}
