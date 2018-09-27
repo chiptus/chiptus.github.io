@@ -59,6 +59,15 @@ body {
   height: calc(100% - 150px);
 }
 
-img.under-construction {
-  height: 50vh;
+.under-construction {
+  text-align: center;
+  color: whitesmoke;
+}
+
+.under-construction img {
+  height: 40vh;
+}
+
+.under-construction .under-construction--label {
+  font-size: 1.2em;
 }
