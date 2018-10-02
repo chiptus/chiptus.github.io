@@ -1,18 +1,27 @@
-.spotlight-container {
-  --spotlight-width: 100vw;
-  --spotlight-height: 90vh;
-  --spotlight-sourcex: 0.5;
-  --spotlight-sourcey: 0vh;
-  --spotlight-color: #d6b24a;
-  --spotlight-source-width: 100px;
-  --spotlight-left-triangle-width: 30vw;
-  --spotlight-right-triangle-width: calc(
-    var(--spotlight-width) -
-      (var(--spotlight-source-width) + var(--spotlight-left-triangle-width))
-  );
-}
+.spotlight {
+  --height: 50vh;
+  --from-top: 10vh;
+  --width-top: 40vw;
+  --width-bottom: 70vw;
+  --top-left-x: 40vw;
+  --bottom-left-x: 15vw;
 
-.spotlight-container {
+  --from-left-top: var(--top-left-x);
+  --to-right-top: calc(var(--top-left-x) + var(--width-top));
+  --from-left-bottom: var(--bottom-left-x);
+  --to-right-bottom: calc(var(--bottom-left-x) + var(--width-bottom));
+  --to-bottom: calc(var(--from-top) + var(--height));
+  --color: #d6b24a;
+
+  clip-path: polygon(
+    var(--from-left-top) var(--from-top),
+    var(--to-right-top) var(--from-top),
+    var(--to-right-bottom) var(--to-bottom),
+    var(--from-left-bottom) var(--to-bottom)
+  );
+
+  background: var(--color);
+
   position: absolute;
   height: 100%;
   top: 0;
@@ -23,58 +32,4 @@
 
   display: flex;
   justify-content: center;
-}
-
-.spotlight-container > div {
-  /* display: inline-block; */
-  float: left;
-}
-
-.spotlight-center {
-  position: relative;
-  height: 100%;
-  text-align: center;
-}
-
-/* .spotlight-center::before, */
-/* .spotlight-center::after */
-.spotlight-left::before,
-.spotlight-right::before,
-.spotlight-left::after,
-.spotlight-right::after {
-  content: '';
-}
-
-.spotlight-center {
-  display: inline-block;
-  margin-top: var(--spotlight-sourcey);
-  height: calc(var(--spotlight-height) - var(--spotlight-sourcey));
-  width: var(--spotlight-source-width);
-  background-color: var(--spotlight-color);
-}
-
-.spotlight-left::before {
-  display: inline-block;
-  margin-top: var(--spotlight-sourcey);
-  height: 0;
-  width: 0;
-  border: 3px solid;
-  border-top-width: 0;
-  border-bottom-width: calc(var(--spotlight-height) - var(--spotlight-sourcey));
-  border-left-width: var(--spotlight-left-triangle-width);
-  border-right-width: 0;
-  border-color: transparent transparent var(--spotlight-color);
-}
-
-.spotlight-right::before {
-  display: inline-block;
-  margin-top: var(--spotlight-sourcey);
-  height: 0;
-  width: 0;
-  border: 3px solid;
-  border-top-width: 0;
-  border-bottom-width: calc(var(--spotlight-height) - var(--spotlight-sourcey));
-  border-left-width: 0;
-  border-right-width: var(--spotlight-right-triangle-width);
-  border-color: transparent transparent var(--spotlight-color);
 }
