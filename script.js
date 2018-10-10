@@ -33,7 +33,7 @@ function moveSourceToButton(btn) {
   const widthTop = btn.clientWidth;
   const top = btn.offsetTop + btn.clientHeight;
   const topLeftX = btn.offsetLeft;
-  const bottomLeftX = Math.random() * (0.1 * spotlightContainer.clientWidth);
+  const bottomLeftX = Math.random() * (0.2 * spotlightContainer.clientWidth);
   const widthBottom = Math.random() * spotlightContainer.clientWidth;
   setSpotlight({ widthTop, top, topLeftX, bottomLeftX, widthBottom });
 }

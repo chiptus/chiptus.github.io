@@ -1,5 +1,11 @@
+/*
+
+https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-inside-the-div
+
+*/
+
 .spotlight {
-  --height: 50vh;
+  --height: 70vh;
   --from-top: 10vh;
   --width-top: 40vw;
   --width-bottom: 70vw;
