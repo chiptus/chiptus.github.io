@@ -25,6 +25,7 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
     var(--to-right-bottom) var(--to-bottom),
     var(--from-left-bottom) var(--to-bottom)
   );
+  animation: polygons 4s alternate infinite;
 
   background: var(--color);
 
@@ -38,4 +39,34 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
 
   display: flex;
   justify-content: center;
+}
+
+@keyframes polygons {
+  25% {
+    clip-path: polygon(
+      var(--from-left-top) var(--from-top),
+      var(--to-right-top) var(--from-top),
+      70% var(--to-bottom),
+      0% var(--to-bottom)
+    );
+    background: pink;
+  }
+  50% {
+    clip-path: polygon(
+      var(--from-left-top) var(--from-top),
+      var(--to-right-top) var(--from-top),
+      55% var(--to-bottom),
+      0 var(--to-bottom)
+    );
+    background: orange;
+  }
+  75% {
+    clip-path: polygon(
+      var(--from-left-top) var(--from-top),
+      var(--to-right-top) var(--from-top),
+      66% var(--to-bottom),
+      0 var(--to-bottom)
+    );
+    background: cornflowerblue;
+  }
 }
