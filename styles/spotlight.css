@@ -5,6 +5,7 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
 */
 
 .spotlight {
+  --initial-height: 10vh;
   --height: 70vh;
   --from-top: 10vh;
   --width-top: 40vw;
@@ -16,16 +17,16 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
   --to-right-top: calc(var(--top-left-x) + var(--width-top));
   --from-left-bottom: var(--bottom-left-x);
   --to-right-bottom: calc(var(--bottom-left-x) + var(--width-bottom));
+  --to-initial-bottom: calc(var(--from-top) + var(--initial-height));
   --to-bottom: calc(var(--from-top) + var(--height));
   --color: #d6b24a;
 
   clip-path: polygon(
     var(--from-left-top) var(--from-top),
     var(--to-right-top) var(--from-top),
-    var(--to-right-bottom) var(--to-bottom),
-    var(--from-left-bottom) var(--to-bottom)
+    var(--to-right-bottom) var(--to-initial-bottom),
+    var(--from-left-bottom) var(--to-initial-bottom)
   );
-  animation: polygons 4s alternate infinite;
 
   background: var(--color);
 
@@ -39,6 +40,17 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
 
   display: flex;
   justify-content: center;
+  opacity: 1;
+  transition: opacity 3s ease-in-out;
+}
+
+.spotlight-animation {
+  animation: polygons 4s alternate;
+  animation-fill-mode: forwards;
+}
+
+.spotlight-initial {
+  opacity: 0;
 }
 
 @keyframes polygons {
@@ -46,27 +58,28 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
     clip-path: polygon(
       var(--from-left-top) var(--from-top),
       var(--to-right-top) var(--from-top),
-      70% var(--to-bottom),
+      15% var(--to-bottom),
       0% var(--to-bottom)
     );
     background: pink;
   }
+
   50% {
     clip-path: polygon(
       var(--from-left-top) var(--from-top),
       var(--to-right-top) var(--from-top),
-      55% var(--to-bottom),
-      0 var(--to-bottom)
-    );
-    background: orange;
-  }
-  75% {
-    clip-path: polygon(
-      var(--from-left-top) var(--from-top),
-      var(--to-right-top) var(--from-top),
-      66% var(--to-bottom),
-      0 var(--to-bottom)
+      100% var(--to-bottom),
+      0% var(--to-bottom)
     );
     background: cornflowerblue;
+  }
+
+  100% {
+    clip-path: polygon(
+      0 var(--from-top),
+      100% var(--from-top),
+      100% var(--to-bottom),
+      0% var(--to-bottom)
+    );
   }
 }

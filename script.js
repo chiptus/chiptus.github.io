@@ -10,6 +10,17 @@ const inputNameToCssVar = {
   bottomLeftX: '--bottom-left-x',
 };
 
+const startPosition = {
+  left: {
+    x: 100,
+    y: 100,
+  },
+  right: {
+    x: 500,
+    y: 100,
+  },
+};
+
 menuButtons.forEach(btn => {
   btn.addEventListener('click', () => onClickButton(btn));
 });
@@ -33,17 +44,44 @@ function moveSourceToButton(btn) {
   const widthTop = btn.clientWidth;
   const top = btn.offsetTop + btn.clientHeight;
   const topLeftX = btn.offsetLeft;
-  const bottomLeftX = Math.random() * (0.2 * spotlightContainer.clientWidth);
-  const widthBottom = Math.random() * spotlightContainer.clientWidth;
+  const bottomLeftX = startPosition.left.x;
+  const widthBottom = startPosition.right.x - startPosition.left.x;
+  // const height = startPosition.left.y;
   setSpotlight({ widthTop, top, topLeftX, bottomLeftX, widthBottom });
 }
 
-function onClickButton(btn) {
-  page = btn.getAttribute('data-page');
-  window.location.hash = `${page}`;
+async function setTimeoutAsync(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
 }
 
-function setSpotlight({ widthTop, widthBottom, top, topLeftX, bottomLeftX }) {
+async function onClickButton(btn) {
+  spotlightContainer.classList.add('spotlight-initial');
+  await setTimeoutAsync(3 * 1000);
+  spotlightContainer.classList.remove('spotlight-animation');
+  page = btn.getAttribute('data-page');
+  window.location.hash = `${page}`;
+  spotlightContainer.classList.remove('spotlight-initial');
+  await setTimeoutAsync(1 * 1000);
+  spotlightContainer.classList.add('spotlight-animation');
+}
+
+function setSpotlight({
+  widthTop,
+  widthBottom,
+  top,
+  topLeftX,
+  bottomLeftX,
+  height,
+}) {
+  if (height) {
+    spotlightContainer.style.setProperty(
+      inputNameToCssVar.height,
+      height + 'px'
+    );
+  }
+
   if (widthTop) {
     spotlightContainer.style.setProperty(
       inputNameToCssVar.widthTop,
@@ -74,3 +112,11 @@ function setSpotlight({ widthTop, widthBottom, top, topLeftX, bottomLeftX }) {
     );
   }
 }
+
+const toggleAnimationButton = document.querySelector('#toggle-animation');
+
+toggleAnimationButton.addEventListener('click', () => {
+  const playState = spotlightContainer.style.animationPlayState;
+  spotlightContainer.style.animationPlayState =
+    playState === 'running' ? 'paused' : 'running';
+});
