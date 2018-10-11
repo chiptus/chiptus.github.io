@@ -7,6 +7,8 @@ body {
   background: #182529;
   font-size: 16px;
   height: 100vh;
+
+  --content-bg-color: #d6b24a;
 }
 
 .container {
@@ -74,6 +76,7 @@ body {
 
 .content {
   transition: opacity 3s ease-in-out;
+  background-color: var(--content-bg-color);
 }
 
 .content.hide {

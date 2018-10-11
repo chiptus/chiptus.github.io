@@ -38,10 +38,12 @@ initView();
 
 async function initView() {
   setSourceToPage(page);
-  await setTimeoutAsync(1 * 2000);
+  await wait(3);
 
   // show content TODO
   contentContainer.classList.remove('hide');
+  await wait(2);
+  spotlightContainer.classList.add('hide');
 }
 
 function setSourceToPage(page) {
@@ -59,31 +61,40 @@ function moveSourceToButton(btn) {
   setSpotlight({ widthTop, top, topLeftX, bottomLeftX, widthBottom });
 }
 
-async function setTimeoutAsync(timeout) {
+function setTimeoutAsync(timeout) {
   return new Promise(resolve => {
     setTimeout(resolve, timeout);
   });
 }
 
-async function onClickButton(btn) {
-  // hide spotlight
-  spotlightContainer.classList.add('spotlight-initial');
-  // hide content TODO
-  contentContainer.classList.add('hide');
+function wait(seconds) {
+  return setTimeoutAsync(seconds * 1000);
+}
 
-  await setTimeoutAsync(3 * 1000);
-  spotlightContainer.classList.remove('spotlight-animation');
+async function onClickButton(btn) {
+  // hide content and start showing the spotlight (in its initial place)
+
+  // hide content
+  contentContainer.classList.add('hide');
+  // change page hash
   page = btn.getAttribute('data-page');
   window.location.hash = `${page}`;
+  await wait(1);
+  // move spot light to inital position
+  spotlightContainer.classList.remove('animation');
   // show spotlight
-  spotlightContainer.classList.remove('spotlight-initial');
-  await setTimeoutAsync(1 * 1000);
-  // restart animation
-  spotlightContainer.classList.add('spotlight-animation');
-  await setTimeoutAsync(1 * 2000);
+  spotlightContainer.classList.remove('hide');
+  await wait(2);
 
-  // show content TODO
+  // when content is hidden - start moving the spotlight
+  spotlightContainer.classList.add('animation');
+
+  // when spotlight is in place start showing the content
+  await wait(2);
   contentContainer.classList.remove('hide');
+  await wait(1);
+  // when spotlight is finished - hide it
+  spotlightContainer.classList.add('hide');
 }
 
 function setSpotlight({

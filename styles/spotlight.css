@@ -6,7 +6,7 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
 
 .spotlight {
   --initial-height: 10vh;
-  --height: 70vh;
+  --height: 90vh;
   --from-top: 10vh;
   --width-top: 40vw;
   --width-bottom: 70vw;
@@ -19,7 +19,6 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
   --to-right-bottom: calc(var(--bottom-left-x) + var(--width-bottom));
   --to-initial-bottom: calc(var(--from-top) + var(--initial-height));
   --to-bottom: calc(var(--from-top) + var(--height));
-  --color: #d6b24a;
 
   clip-path: polygon(
     var(--from-left-top) var(--from-top),
@@ -28,7 +27,7 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
     var(--from-left-bottom) var(--to-initial-bottom)
   );
 
-  background: var(--color);
+  background: var(--content-bg-color);
 
   position: absolute;
   height: 100%;
@@ -44,12 +43,12 @@ https://stackoverflow.com/questions/31149144/how-to-use-clip-path-with-text-insi
   transition: opacity 3s ease-in-out;
 }
 
-.spotlight-animation {
+.spotlight.animation {
   animation: polygons 4s alternate;
   animation-fill-mode: forwards;
 }
 
-.spotlight-initial {
+.spotlight.hide {
   opacity: 0;
 }
 
