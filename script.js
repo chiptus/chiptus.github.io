@@ -1,6 +1,7 @@
 const spotlightContainer = document.querySelector('.spotlight');
 const contentContainer = document.querySelector('.content');
 const menuButtons = document.querySelectorAll('.menu ul li');
+const pages = ['about', 'blog', 'contact'];
 let page = window.location.hash ? window.location.hash.substr(1) : 'about';
 const inputNameToCssVar = {
   height: '--height',
@@ -22,21 +23,28 @@ const startPosition = {
   },
 };
 
-menuButtons.forEach(btn => {
-  btn.addEventListener('click', () => onClickButton(btn));
-});
-
-window.addEventListener('resize', () => {
-  setSourceToPage(page);
-});
-
-window.addEventListener('hashchange', () => {
-  setSourceToPage(window.location.hash.substr(1));
-});
-
 initView();
 
 async function initView() {
+  menuButtons.forEach(btn => {
+    btn.addEventListener('click', () => onClickButton(btn));
+  });
+
+  window.addEventListener('resize', () => {
+    setSourceToPage(page);
+  });
+
+  window.addEventListener('hashchange', () => {
+    page = window.location.hash.substr(1);
+    setSourceToPage(page);
+    pages.filter(p => p !== page).forEach(p => {
+      contentContainer
+        .querySelector(`.${p}-page`)
+        .setAttribute('hidden', 'true');
+    });
+    contentContainer.querySelector(`.${page}-page`).removeAttribute('hidden');
+  });
+  contentContainer.querySelector(`.${page}-page`).removeAttribute('hidden');
   setSourceToPage(page);
   await wait(3);
 
@@ -78,7 +86,7 @@ async function onClickButton(btn) {
   contentContainer.classList.add('hide');
   // change page hash
   page = btn.getAttribute('data-page');
-  window.location.hash = `${page}`;
+  window.location.hash = page;
   await wait(1);
   // move spot light to inital position
   spotlightContainer.classList.remove('animation');
@@ -142,11 +150,3 @@ function setSpotlight({
     );
   }
 }
-
-// const toggleAnimationButton = document.querySelector('#toggle-animation');
-
-// toggleAnimationButton.addEventListener('click', () => {
-//   const playState = spotlightContainer.style.animationPlayState;
-//   spotlightContainer.style.animationPlayState =
-//     playState === 'running' ? 'paused' : 'running';
-// });
