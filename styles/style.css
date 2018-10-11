@@ -71,3 +71,11 @@ body {
 .under-construction .under-construction--label {
   font-size: 1.2em;
 }
+
+.content {
+  transition: opacity 3s ease-in-out;
+}
+
+.content.hide {
+  opacity: 0;
+}
