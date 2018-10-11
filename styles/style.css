@@ -7,7 +7,7 @@ body {
   background: #182529;
   font-size: 16px;
   height: 100vh;
-
+  font-family: 'Sawarabi Mincho', sans-serif;
   --content-bg-color: #d6b24a;
 }
 
