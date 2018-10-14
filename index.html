@@ -44,8 +44,24 @@
       </div>
       <div class="contact-page" hidden aria-hidden="true" data-page="contact">
         <form>
-          <div>
-            asdasd
+          <div class="form-group form-group-name">
+            <label for="name-input">Name:</label>
+            <input class="form-control" id="name-input" name="name" />
+          </div>
+          <div class="form-group form-group-email">
+            <label for="email-input">Email:</label>
+            <input class="form-control" id="email-input" name="email" type="email" />
+          </div>
+          <div class="form-group form-group-phone">
+            <label for="phone-input">Phone:</label>
+            <input class="form-control" id="phone-input" name="phone" type="tel" />
+          </div>
+          <div class="form-group form-group-comments">
+            <label for="comments-input">Comments:</label>
+            <textarea class="form-control" id="comments-input" name="comment"></textarea>
+          </div>
+          <div class="buttons-line">
+            <button type="submit" class="submit-button">Submit</button>
           </div>
         </form>
       </div>
