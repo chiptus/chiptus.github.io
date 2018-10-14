@@ -2,7 +2,7 @@ const spotlightContainer = document.querySelector('.spotlight');
 const contentContainer = document.querySelector('.content');
 const menuButtons = document.querySelectorAll('.menu ul li');
 const pages = ['about', 'blog', 'contact'];
-let page = window.location.hash ? window.location.hash.substr(1) : 'about';
+let page = window.location.hash ? window.location.hash.substr(1) : 'contact';
 const inputNameToCssVar = {
   height: '--height',
   top: '--from-top',
