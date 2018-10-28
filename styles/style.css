@@ -82,3 +82,12 @@ body {
 .content.hide {
   opacity: 0;
 }
+
+.page {
+  transition: 1s;
+  margin-left: 0;
+}
+
+.page.outside {
+  margin-left: -1500px;
+}

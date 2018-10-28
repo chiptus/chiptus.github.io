@@ -34,24 +34,12 @@ async function initView() {
     setSourceToPage(page);
   });
 
-  window.addEventListener('hashchange', () => {
-    page = window.location.hash.substr(1);
-    setSourceToPage(page);
-    pages.filter(p => p !== page).forEach(p => {
-      contentContainer
-        .querySelector(`.${p}-page`)
-        .setAttribute('hidden', 'true');
-    });
-    contentContainer.querySelector(`.${page}-page`).removeAttribute('hidden');
-  });
-  contentContainer.querySelector(`.${page}-page`).removeAttribute('hidden');
-  setSourceToPage(page);
-  await wait(3);
-
-  // show content TODO
-  contentContainer.classList.remove('hide');
-  await wait(2);
-  spotlightContainer.classList.add('hide');
+  // window.addEventListener('hashchange', () => {
+  //   page = window.location.hash.substr(1);
+  // });
+  // contentContainer.querySelector(`.${page}-page`).removeAttribute('hidden');
+  await showOpenningAnimation(page);
+  await pageTransition(null, page);
 }
 
 function setSourceToPage(page) {
@@ -80,20 +68,33 @@ function wait(seconds) {
 }
 
 async function onClickButton(btn) {
-  // hide content and start showing the spotlight (in its initial place)
-
-  // hide content
-  contentContainer.classList.add('hide');
-  // change page hash
   page = btn.getAttribute('data-page');
-  window.location.hash = page;
-  await wait(1);
-  // move spot light to inital position
-  spotlightContainer.classList.remove('animation');
-  // show spotlight
-  spotlightContainer.classList.remove('hide');
-  await wait(2);
+  moveToPage(page);
+}
 
+async function pageTransition(lastPage, page) {
+  if (lastPage) {
+    await hidePage(lastPage);
+  }
+  await showPage(page);
+}
+
+async function hidePage(page) {
+  const pageElement = contentContainer.querySelector(`.${page}-page`);
+  pageElement.classList.add('outside');
+  await wait(1);
+  pageElement.setAttribute('hidden', 'hidden');
+}
+
+async function showPage(page) {
+  const pageElement = contentContainer.querySelector(`.${page}-page`);
+  pageElement.removeAttribute('hidden');
+  await wait(1);
+  pageElement.classList.remove('outside');
+}
+
+async function showOpenningAnimation(page) {
+  setSourceToPage(page);
   // when content is hidden - start moving the spotlight
   spotlightContainer.classList.add('animation');
 
@@ -103,6 +104,12 @@ async function onClickButton(btn) {
   await wait(1);
   // when spotlight is finished - hide it
   spotlightContainer.classList.add('hide');
+}
+
+async function moveToPage(page) {
+  const lastPage = window.location.hash.substr(1);
+  window.location.hash = page;
+  await pageTransition(lastPage, page);
 }
 
 function setSpotlight({

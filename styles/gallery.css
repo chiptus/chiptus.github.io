@@ -1,0 +1,12 @@
+.projects-page {
+  /* width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: auto; */
+}
+
+.gallery {
+  width: 50%;
+  height: 400px;
+}
