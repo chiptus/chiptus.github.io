@@ -58,7 +58,7 @@ body {
   justify-content: center;
   align-items: center;
   align-content: center;
-  height: calc(100% - 150px);
+  height: 100vh;
 }
 
 .under-construction {
