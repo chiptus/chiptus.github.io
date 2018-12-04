@@ -46,6 +46,21 @@
 .gallery .modal .modal-header {
   display: flex;
   justify-content: space-between;
+  grid-area: title;
+}
+
+.gallery .modal .item-image {
+  grid-area: image;
+  margin: 10px;
+}
+
+.item-image img {
+  width: 250px;
+  height: 100%;
+}
+
+.gallery .modal .item-description {
+  grid-area: desc;
 }
 
 .modal-header .modal-title {
@@ -65,4 +80,10 @@
 
 .gallery .modal.open {
   opacity: 1;
+  display: grid;
+  grid-template-areas:
+    'title title title'
+    'image desc desc';
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }

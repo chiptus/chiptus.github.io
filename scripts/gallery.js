@@ -7,6 +7,8 @@ const itemsById = {
     id: 'multiSearch',
     title: 'Multi Search',
     content: fetchHtmlAsText('./gallery/multi-search.html'),
+    imageURL:
+      'https://images.unsplash.com/photo-1488610675821-b5776c22e019?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
   },
 };
 
@@ -34,7 +36,8 @@ function BuildModal(selector) {
   const modalElement = document.querySelector(selector);
   const modalHeader = modalElement.querySelector('.modal-header');
   const modalTitle = modalHeader.querySelector('.modal-title');
-  const modalContent = modalElement.querySelector('.modal-content');
+  const modalContent = modalElement.querySelector('.item-description');
+  const image = modalElement.querySelector('.item-image img');
   const modalCloseBtn = modalElement.querySelector('.modal-close-btn');
 
   modalCloseBtn.addEventListener('click', () => close());
@@ -45,13 +48,14 @@ function BuildModal(selector) {
     close,
   };
 
-  async function open({ title, content }) {
+  async function open({ title, content, imageURL }) {
     modalElement.hidden = false;
     await setTimeoutAsync();
     modalElement.classList.add('open');
 
     modalTitle.innerHTML = title;
     modalContent.innerHTML = content;
+    image.src = imageURL;
   }
 
   function close() {
