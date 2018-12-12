@@ -10,6 +10,12 @@ const itemsById = {
     imageURL:
       'https://images.unsplash.com/photo-1488610675821-b5776c22e019?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
   },
+  tezos: {
+    id: 'tezos',
+    title: 'TezosIL Bakery website',
+    content: fetchHtmlAsText('./gallery/tezos.html'),
+    imageURL: './gallery/tezos-logo.png',
+  },
 };
 
 let modal;

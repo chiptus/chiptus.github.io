@@ -24,6 +24,7 @@
   background-color: #6363b0;
   margin: 1em;
   cursor: pointer;
+  flex-direction: column;
 }
 
 .gallery .gallery-item:not([data-item]) {
