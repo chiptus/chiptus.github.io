@@ -40,19 +40,31 @@ export const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("about")}
-              className="text-foreground/80 hover:text-primary transition-colors"
+              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
-              About
+              Journey
+            </button>
+            <button
+              onClick={() => scrollToSection("now")}
+              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+            >
+              Now
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="text-foreground/80 hover:text-primary transition-colors"
+              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Projects
             </button>
             <button
+              onClick={() => scrollToSection("blog")}
+              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+            >
+              Blog
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
-              className="text-foreground/80 hover:text-primary transition-colors"
+              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Contact
             </button>

@@ -8,6 +8,11 @@ export interface Project {
   link?: string;
   github?: string;
   image: string;
+  caseStudy?: {
+    problem: string;
+    solution: string;
+    impact: string[];
+  };
 }
 
 interface ProjectCardProps {
@@ -16,24 +21,24 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <article className="group bg-card rounded-lg shadow-smooth overflow-hidden hover-lift hover-glow transition-all">
-      <div className="aspect-video overflow-hidden">
+    <article className="group bg-background border-brutal border-foreground shadow-brutal hover:shadow-brutal-hover transition-all overflow-hidden">
+      <div className="aspect-video overflow-hidden border-b-brutal border-foreground">
         <img
           src={project.image}
           alt={`${project.name} screenshot`}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-semibold mb-3">{project.name}</h3>
+        <h3 className="text-2xl font-bold mb-3 uppercase tracking-tight">{project.name}</h3>
         <p className="text-muted-foreground mb-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tech.map((tech, index) => (
             <span
               key={index}
-              className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full"
+              className="px-3 py-1 text-xs border-brutal border-foreground bg-background font-mono uppercase"
             >
               {tech}
             </span>
@@ -46,7 +51,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               size="sm"
               variant="outline"
               asChild
-              className="hover:bg-primary hover:text-primary-foreground transition-colors"
+              className="border-brutal border-foreground uppercase tracking-wide text-xs"
             >
               <a
                 href={project.link}
@@ -55,7 +60,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 className="flex items-center gap-2"
               >
                 <ExternalLink className="h-4 w-4" />
-                Live Site
+                Visit
               </a>
             </Button>
           )}
@@ -64,7 +69,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               size="sm"
               variant="outline"
               asChild
-              className="hover:bg-primary hover:text-primary-foreground transition-colors"
+              className="border-brutal border-foreground uppercase tracking-wide text-xs"
             >
               <a
                 href={project.github}
@@ -73,7 +78,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 className="flex items-center gap-2"
               >
                 <Github className="h-4 w-4" />
-                GitHub
+                Code
               </a>
             </Button>
           )}

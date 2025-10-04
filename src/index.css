@@ -36,14 +36,11 @@ All colors MUST be HSL.
     --input: 214 32% 91%;
     --ring: 210 71% 58%;
 
-    --radius: 0.75rem;
+    --radius: 0rem;
 
-    --gradient-hero: linear-gradient(135deg, hsl(210 71% 58% / 0.1), hsl(210 71% 68% / 0.05));
-    --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%), hsl(210 17% 98%));
-    
-    --shadow-smooth: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-elevated: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
-    --shadow-glow: 0 0 40px hsl(210 71% 58% / 0.15);
+    --shadow-brutal: 4px 4px 0 hsl(0 0% 0%);
+    --shadow-brutal-hover: 6px 6px 0 hsl(0 0% 0%);
+    --border-brutal: 2px;
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -77,12 +74,9 @@ All colors MUST be HSL.
     --input: 217 33% 17%;
     --ring: 210 71% 58%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(210 71% 58% / 0.15), hsl(210 71% 68% / 0.05));
-    --gradient-card: linear-gradient(to bottom, hsl(222 47% 10%), hsl(222 47% 12%));
-
-    --shadow-smooth: 0 1px 3px 0 hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
-    --shadow-elevated: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -4px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 40px hsl(210 71% 58% / 0.25);
+    --shadow-brutal: 4px 4px 0 hsl(210 71% 58%);
+    --shadow-brutal-hover: 6px 6px 0 hsl(210 71% 58%);
+    --border-brutal: 2px;
   }
 }
 
@@ -101,15 +95,22 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-1;
+  .shadow-brutal {
+    box-shadow: var(--shadow-brutal);
   }
 
-  .hover-glow {
-    @apply transition-shadow duration-300 hover:shadow-[var(--shadow-glow)];
+  .shadow-brutal-hover {
+    box-shadow: var(--shadow-brutal-hover);
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  .border-brutal {
+    border-width: var(--border-brutal);
+  }
+
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 }
