@@ -1,73 +1,144 @@
-# Welcome to your Lovable project
+# Chaim Lev-Ari - Portfolio Website
 
-## Project info
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/74f915bb-c097-4e00-89d2-9b0e5faeaf1c
+## Features
 
-## How can I edit this code?
+- 🌓 **Light/Dark Mode** - Theme toggle with localStorage persistence
+- 📱 **Fully Responsive** - Mobile-first design that looks great on all devices
+- ⚡ **Smooth Animations** - Subtle transitions and hover effects
+- 🎯 **Sticky Navigation** - Smooth scrolling to sections
+- ♿ **Accessible** - Semantic HTML and ARIA labels
+- 🚀 **Production Ready** - Optimized build configuration
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Framework:** React 18 with TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Icons:** Lucide React
+- **Routing:** React Router DOM
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/74f915bb-c097-4e00-89d2-9b0e5faeaf1c) and start prompting.
+## Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
+```
+src/
+├── components/          # React components
+│   ├── ui/             # shadcn/ui components
+│   ├── Navigation.tsx  # Sticky navigation
+│   ├── Hero.tsx        # Hero section
+│   ├── About.tsx       # About section
+│   ├── Projects.tsx    # Projects grid
+│   ├── ProjectCard.tsx # Individual project card
+│   ├── Contact.tsx     # Contact section
+│   ├── Footer.tsx      # Footer
+│   └── ThemeToggle.tsx # Theme switcher
+├── pages/              # Page components
+│   ├── Index.tsx       # Home page
+│   └── NotFound.tsx    # 404 page
+├── assets/             # Images and static files
+├── lib/                # Utility functions
+└── hooks/              # Custom React hooks
+```
 
-**Use your preferred IDE**
+## Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js 16+ and npm
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Build for Production
 
-**Use GitHub Codespaces**
+Create an optimized production build:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+Preview the production build locally:
 
-This project is built with:
+```bash
+npm run preview
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Customization
 
-## How can I deploy this project?
+### Update Personal Information
 
-Simply open [Lovable](https://lovable.dev/projects/74f915bb-c097-4e00-89d2-9b0e5faeaf1c) and click on Share -> Publish.
+Edit the following files to update personal information:
 
-## Can I connect a custom domain to my Lovable project?
+- `src/components/Hero.tsx` - Name and introduction
+- `src/components/About.tsx` - About section content
+- `src/components/Projects.tsx` - Project details
+- `src/components/Contact.tsx` - Contact information
 
-Yes, you can!
+### Modify Color Scheme
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The color scheme is defined in `src/index.css`. Update the CSS variables for both light and dark modes:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```css
+:root {
+  --primary: 210 71% 58%;  /* Blue accent */
+  /* ... other colors */
+}
+
+.dark {
+  --primary: 210 71% 58%;  /* Same blue accent */
+  /* ... other colors */
+}
+```
+
+### Add New Projects
+
+Edit `src/components/Projects.tsx` and add to the `projects` array:
+
+```typescript
+{
+  name: "Project Name",
+  description: "Project description",
+  tech: ["React", "TypeScript"],
+  link: "https://project-url.com",
+  github: "https://github.com/username/repo",
+  image: projectImage,
+}
+```
+
+## Deployment
+
+This project can be deployed to any static hosting service:
+
+- **Lovable** - Click "Publish" in the Lovable editor
+- **Vercel** - Connect your Git repository
+- **Netlify** - Drag and drop the `dist` folder
+- **GitHub Pages** - Use the build output
+
+## License
+
+MIT License - feel free to use this template for your own portfolio!
+
+## Contact
+
+- Email: chiptus@gmail.com
+- GitHub: [@chiptus](https://github.com/chiptus)
+- LinkedIn: [chiptus](http://linkedin.com/in/chiptus)
