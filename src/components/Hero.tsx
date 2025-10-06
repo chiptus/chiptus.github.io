@@ -13,7 +13,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden grid-pattern"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       <Scene3D />
       
