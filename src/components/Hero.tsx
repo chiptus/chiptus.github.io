@@ -1,14 +1,34 @@
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Scene3D } from "./Scene3D";
+import { useHeroData } from "@/hooks/useHeroData";
 
 export const Hero = () => {
+  const { data, isLoading, error } = useHeroData();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  if (isLoading || !data) {
+    return (
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      >
+        <Scene3D />
+        <div className="container mx-auto px-6 relative z-10">
+          <p className="text-center font-mono">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return null;
+  }
 
   return (
     <section
@@ -24,19 +44,18 @@ export const Hero = () => {
               $ whoami
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight">
-              Chaim Lev-Ari
+              {data.name}
             </h1>
             <div className="border-l-4 border-primary pl-6 mb-8">
               <p className="text-xl md:text-2xl font-bold mb-2 uppercase tracking-tight">
-                Full-Stack Developer
+                {data.title}
               </p>
               <p className="text-lg text-muted-foreground font-mono">
-                React • TypeScript • AI/ML • 10+ years
+                {data.skills}
               </p>
             </div>
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              Building scalable applications at the intersection of AI, education, and health tech. 
-              Led major frontend migrations and developed ML platforms used by thousands.
+              {data.description}
             </p>
           </div>
 
@@ -61,7 +80,7 @@ export const Hero = () => {
 
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/chiptus"
+              href={data.social.github}
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -70,7 +89,7 @@ export const Hero = () => {
               <Github className="h-6 w-6" />
             </a>
             <a
-              href="http://linkedin.com/in/chiptus"
+              href={data.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -79,7 +98,7 @@ export const Hero = () => {
               <Linkedin className="h-6 w-6" />
             </a>
             <a
-              href="mailto:chiptus@gmail.com"
+              href={`mailto:${data.social.email}`}
               className="text-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >
