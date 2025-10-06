@@ -1,7 +1,26 @@
 import { Sparkles, MapPin, Calendar } from "lucide-react";
+import { useNowData } from "@/hooks/useNowData";
 
 export const NowSection = () => {
-  const lastUpdated = "October 2025";
+  const { data, isLoading, error } = useNowData();
+
+  if (isLoading) {
+    return (
+      <section className="py-24 bg-primary/5">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-center font-mono">Loading...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !data) {
+    return null;
+  }
+
+  const { lastUpdated, currentWork, learning, status } = data;
   
   return (
     <section className="py-24 bg-primary/5">
@@ -23,15 +42,14 @@ export const NowSection = () => {
               <div>
                 <h3 className="font-bold text-xl mb-2 uppercase tracking-tight">Currently Working On</h3>
                 <p className="text-muted-foreground">
-                  Exploring AI agents and their applications in education and health tech. 
-                  Building experimental tools to make AI more accessible.
+                  {currentWork}
                 </p>
               </div>
 
               <div>
                 <h3 className="font-bold text-xl mb-2 uppercase tracking-tight">Learning</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["LLM Fine-tuning", "RAG Systems", "Agent Frameworks", "Vector DBs"].map((tech) => (
+                  {learning.map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1 border-brutal border-foreground bg-background font-mono text-sm"
@@ -48,8 +66,7 @@ export const NowSection = () => {
                   Status
                 </h3>
                 <p className="text-muted-foreground">
-                  Open to opportunities in AI, education, or health sectors. 
-                  Interested in roles that combine technical leadership with hands-on development.
+                  {status}
                 </p>
               </div>
             </div>

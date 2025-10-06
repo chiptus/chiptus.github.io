@@ -1,33 +1,24 @@
-import { Terminal, Rocket, Brain, Briefcase } from "lucide-react";
-
-const milestones = [
-  {
-    year: "2010s",
-    title: "Early Projects",
-    description: "Built Cobwebs web crawler and Dwarven Realms game",
-    icon: Terminal,
-  },
-  {
-    year: "2016-2020",
-    title: "ML & Festivals",
-    description: "Developed cnvrg.io ML platform and getupline festival app",
-    icon: Brain,
-  },
-  {
-    year: "2020-2023",
-    title: "Portainer",
-    description: "Led React migration for container management platform",
-    icon: Rocket,
-  },
-  {
-    year: "2024",
-    title: "AI Innovation",
-    description: "Built myplace AI-powered landing page bot",
-    icon: Briefcase,
-  },
-];
+import { useMilestonesData } from "@/hooks/useMilestonesData";
 
 export const JourneyTimeline = () => {
+  const { data: milestones, isLoading, error } = useMilestonesData();
+
+  if (isLoading) {
+    return (
+      <section id="about" className="py-24 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-center font-mono">Loading...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !milestones) {
+    return null;
+  }
+
   return (
     <section id="about" className="py-24 bg-background">
       <div className="container mx-auto px-6">

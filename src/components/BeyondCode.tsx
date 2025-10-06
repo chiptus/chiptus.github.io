@@ -1,24 +1,24 @@
-import { Music, Mountain, Coffee } from "lucide-react";
-
-const interests = [
-  {
-    icon: Music,
-    title: "Music",
-    description: "Electronic music production and DJing",
-  },
-  {
-    icon: Mountain,
-    title: "Hiking",
-    description: "Exploring trails and nature",
-  },
-  {
-    icon: Coffee,
-    title: "Coffee",
-    description: "Specialty coffee enthusiast",
-  },
-];
+import { useInterestsData } from "@/hooks/useInterestsData";
 
 export const BeyondCode = () => {
+  const { data: interests, isLoading, error } = useInterestsData();
+
+  if (isLoading) {
+    return (
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-center font-mono">Loading...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !interests) {
+    return null;
+  }
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-6">
