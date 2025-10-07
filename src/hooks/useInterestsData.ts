@@ -14,7 +14,7 @@ export interface Interest {
 }
 
 const fetchInterestsData = async (): Promise<Interest[]> => {
-  const response = await fetch("/src/data/interests.json");
+  const response = await fetch("/data/interests.json");
   if (!response.ok) {
     throw new Error("Failed to fetch interests data");
   }

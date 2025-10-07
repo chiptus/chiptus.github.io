@@ -23,7 +23,7 @@ interface ProjectsData {
 }
 
 const fetchProjectsData = async (): Promise<ProjectsData> => {
-  const response = await fetch("/src/data/projects.json");
+  const response = await fetch("/data/projects.json");
   if (!response.ok) {
     throw new Error("Failed to fetch projects data");
   }

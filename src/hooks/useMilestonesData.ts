@@ -16,7 +16,7 @@ export interface Milestone {
 }
 
 const fetchMilestonesData = async (): Promise<Milestone[]> => {
-  const response = await fetch("/src/data/milestones.json");
+  const response = await fetch("/data/milestones.json");
   if (!response.ok) {
     throw new Error("Failed to fetch milestones data");
   }

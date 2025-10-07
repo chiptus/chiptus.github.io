@@ -8,7 +8,7 @@ export interface NowData {
 }
 
 const fetchNowData = async (): Promise<NowData> => {
-  const response = await fetch("/src/data/now.json");
+  const response = await fetch("/data/now.json");
   if (!response.ok) {
     throw new Error("Failed to fetch now data");
   }
