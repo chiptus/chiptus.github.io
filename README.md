@@ -67,14 +67,18 @@ npm run preview
 
 ## Customization
 
-### Update Personal Information
+### Update Content
 
-Edit the following files to update personal information:
+All portfolio content is managed through JSON files in `/public/data/`:
 
-- `src/components/Hero.tsx` - Name and introduction
-- `src/components/About.tsx` - About section content
-- `src/components/Projects.tsx` - Project details
-- `src/components/Contact.tsx` - Contact information
+- `hero.json` - Name, title, skills, and social links
+- `projects.json` - Project listings with descriptions and links
+- `work-experience.json` - Work history and roles
+- `milestones.json` - Career timeline events
+- `now.json` - Current activities and interests
+- `interests.json` - Beyond code hobbies and passions
+
+Simply edit these JSON files and refresh the page to see your changes.
 
 ### Modify Color Scheme
 
@@ -89,21 +93,6 @@ The color scheme is defined in `src/index.css`. Update the CSS variables for bot
 .dark {
   --primary: 210 71% 58%;  /* Same blue accent */
   /* ... other colors */
-}
-```
-
-### Add New Projects
-
-Edit `src/components/Projects.tsx` and add to the `projects` array:
-
-```typescript
-{
-  name: "Project Name",
-  description: "Project description",
-  tech: ["React", "TypeScript"],
-  link: "https://project-url.com",
-  github: "https://github.com/username/repo",
-  image: projectImage,
 }
 ```
 
