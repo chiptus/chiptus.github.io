@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
+import { WorkExperience } from "@/components/WorkExperience";
 import { JourneyTimeline } from "@/components/JourneyTimeline";
 import { NowSection } from "@/components/NowSection";
 import { BeyondCode } from "@/components/BeyondCode";
@@ -14,6 +15,7 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
+        <WorkExperience />
         <JourneyTimeline />
         <NowSection />
         <BeyondCode />

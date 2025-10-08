@@ -17,7 +17,6 @@ const imageMap: Record<string, string> = {
 };
 
 interface ProjectsData {
-  featuredProject: Project;
   projects: Project[];
   allTechs: string[];
 }
@@ -30,10 +29,6 @@ const fetchProjectsData = async (): Promise<ProjectsData> => {
   const data = await response.json();
   
   return {
-    featuredProject: {
-      ...data.featuredProject,
-      image: imageMap[data.featuredProject.image],
-    },
     projects: data.projects.map((project: Project & { image: string }) => ({
       ...project,
       image: imageMap[project.image],

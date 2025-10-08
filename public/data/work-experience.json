@@ -1,0 +1,45 @@
+{
+  "experiences": [
+    {
+      "company": "Portainer",
+      "role": "Frontend Lead",
+      "period": "2020 - 2023",
+      "description": "Led frontend migration to React for a comprehensive container management platform used by thousands of developers worldwide.",
+      "responsibilities": [
+        "Architected and led phased migration from AngularJS to React with TypeScript",
+        "Implemented micro-frontend approach for gradual migration with zero downtime",
+        "Created shared component library and established modern development practices",
+        "Mentored team of 5 frontend developers"
+      ],
+      "achievements": [
+        "Reduced bug reports by 40%",
+        "Improved page load times by 60%",
+        "Enabled 3x faster feature development",
+        "Platform used by 500K+ developers"
+      ],
+      "tech": ["React", "TypeScript", "Docker", "Kubernetes"],
+      "link": "https://www.portainer.io",
+      "image": "/src/assets/portainer.jpg"
+    },
+    {
+      "company": "cnvrg.io",
+      "role": "Software Engineer",
+      "period": "2016 - 2020",
+      "description": "Built enterprise ML operations platform enabling data scientists to build, train, and deploy machine learning models at scale.",
+      "responsibilities": [
+        "Developed frontend features for ML model training and deployment",
+        "Integrated Kubernetes orchestration for scalable model execution",
+        "Built data visualization tools for model performance metrics",
+        "Collaborated with data scientists to understand workflow requirements"
+      ],
+      "achievements": [
+        "Launched platform used by Fortune 500 companies",
+        "Built real-time monitoring dashboard for ML pipelines",
+        "Optimized rendering for large-scale data visualization"
+      ],
+      "tech": ["React", "Python", "Kubernetes", "TensorFlow"],
+      "link": "https://cnvrg.io",
+      "image": "/src/assets/cnvrg.jpg"
+    }
+  ]
+}
