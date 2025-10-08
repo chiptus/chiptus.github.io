@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Code2 } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -56,10 +56,6 @@ export const Footer = () => {
                 </a>
               </div>
               
-              <p className="text-sm text-muted-foreground font-mono flex items-center gap-2">
-                <Code2 className="h-4 w-4" />
-                Code is poetry
-              </p>
             </div>
           </div>
 
