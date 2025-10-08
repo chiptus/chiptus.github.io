@@ -1,46 +1,29 @@
 # Chaim Lev-Ari - Portfolio Website
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS featuring a brutalist design aesthetic with dark/light mode support and 3D animated elements.
 
 ## Features
 
 - 🌓 **Light/Dark Mode** - Theme toggle with localStorage persistence
 - 📱 **Fully Responsive** - Mobile-first design that looks great on all devices
-- ⚡ **Smooth Animations** - Subtle transitions and hover effects
-- 🎯 **Sticky Navigation** - Smooth scrolling to sections
+- 🎨 **Brutalist Design** - Bold borders, strong shadows, and striking typography
+- 🎬 **3D Animations** - Interactive Three.js wireframe shapes in hero section
+- 🗂️ **Data-Driven** - JSON-based content management system
+- 🎯 **Smooth Navigation** - Single-page scrolling experience
 - ♿ **Accessible** - Semantic HTML and ARIA labels
-- 🚀 **Production Ready** - Optimized build configuration
+- 🚀 **Production Ready** - Optimized build with Vite and SWC
 
 ## Tech Stack
 
 - **Framework:** React 18 with TypeScript
-- **Build Tool:** Vite
-- **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
+- **Build Tool:** Vite with SWC
+- **Styling:** Tailwind CSS with CSS variables
+- **UI Components:** shadcn/ui (Radix UI + Tailwind)
+- **Data Fetching:** TanStack Query (React Query)
+- **3D Graphics:** @react-three/fiber + @react-three/drei
+- **Theme:** next-themes
 - **Icons:** Lucide React
 - **Routing:** React Router DOM
-
-## Project Structure
-
-```
-src/
-├── components/          # React components
-│   ├── ui/             # shadcn/ui components
-│   ├── Navigation.tsx  # Sticky navigation
-│   ├── Hero.tsx        # Hero section
-│   ├── About.tsx       # About section
-│   ├── Projects.tsx    # Projects grid
-│   ├── ProjectCard.tsx # Individual project card
-│   ├── Contact.tsx     # Contact section
-│   ├── Footer.tsx      # Footer
-│   └── ThemeToggle.tsx # Theme switcher
-├── pages/              # Page components
-│   ├── Index.tsx       # Home page
-│   └── NotFound.tsx    # 404 page
-├── assets/             # Images and static files
-├── lib/                # Utility functions
-└── hooks/              # Custom React hooks
-```
 
 ## Getting Started
 
