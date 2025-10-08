@@ -40,9 +40,6 @@ export const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <div className="mb-8">
-            <div className="font-mono text-sm text-muted-foreground mb-4">
-              $ whoami
-            </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight">
               {data.name}
             </h1>
