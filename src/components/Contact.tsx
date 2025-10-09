@@ -1,27 +1,8 @@
-import { Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSocial } from "@/hooks/useSocial";
 
 export const Contact = () => {
-  const contactLinks = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "chiptus@gmail.com",
-      href: "mailto:chiptus@gmail.com",
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      value: "github.com/chiptus",
-      href: "https://github.com/chiptus",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "linkedin.com/in/chiptus",
-      href: "http://linkedin.com/in/chiptus",
-    },
-  ];
+  const { links, social } = useSocial();
 
   return (
     <section id="contact" className="py-24 bg-primary/5">
@@ -35,19 +16,27 @@ export const Contact = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {contactLinks.map((link, index) => (
+            {links.map((link, index) => (
               <a
                 key={index}
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                rel={
+                  link.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="bg-background border-brutal border-foreground p-6 shadow-brutal hover:shadow-brutal-hover transition-all group"
               >
                 <div className="w-12 h-12 border-brutal border-foreground bg-background flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/10 transition-colors">
                   <link.icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-bold mb-2 uppercase tracking-tight">{link.label}</h3>
-                <p className="text-sm text-muted-foreground font-mono">{link.value}</p>
+                <h3 className="font-bold mb-2 uppercase tracking-tight">
+                  {link.label}
+                </h3>
+                <p className="text-sm text-muted-foreground font-mono">
+                  {link.value}
+                </p>
               </a>
             ))}
           </div>
@@ -57,9 +46,7 @@ export const Contact = () => {
             asChild
             className="border-brutal border-foreground shadow-brutal hover:shadow-brutal-hover transition-all uppercase tracking-wide w-full md:w-auto"
           >
-            <a href="mailto:chiptus@gmail.com">
-              Send Me a Message
-            </a>
+            <a href={`mailto:${social?.email}`}>Send Me a Message</a>
           </Button>
         </div>
       </div>
