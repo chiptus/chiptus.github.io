@@ -1,26 +1,16 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ES2022",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ]
-    },
-    "noImplicitAny": true,
-    "noUnusedParameters": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
-    "strict": true
+    }
   }
 }

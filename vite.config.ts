@@ -1,25 +1,19 @@
+// vite.config.ts
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
-import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   server: {
-    host: "::",
-    port: 8080,
+    port: 3000,
   },
   plugins: [
-    tanstackRouter(),
-    react(),
+    tsConfigPaths(),
+    tanstackStart(),
+    // react's vite plugin must come after start's vite plugin
+    viteReact(),
     tailwindcss(),
-    mode === "development" && componentTagger(),
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-}));
+  ],
+});
