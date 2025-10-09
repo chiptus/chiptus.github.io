@@ -72,7 +72,7 @@ export const FeaturedProject = ({ project }: FeaturedProjectProps) => {
             <ul className="space-y-2">
               {project.caseStudy.impact.map((item, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                   <span className="text-muted-foreground">{item}</span>
                 </li>
               ))}
