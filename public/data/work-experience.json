@@ -19,7 +19,7 @@
       ],
       "tech": ["React", "TypeScript", "Docker", "Kubernetes"],
       "link": "https://www.portainer.io",
-      "image": "/src/assets/portainer.jpg"
+      "image": "/assets/portainer.jpg"
     },
     {
       "company": "cnvrg.io",
@@ -39,7 +39,7 @@
       ],
       "tech": ["React", "Python", "Kubernetes", "TensorFlow"],
       "link": "https://cnvrg.io",
-      "image": "/src/assets/cnvrg.jpg"
+      "image": "/assets/cnvrg.jpg"
     }
   ]
 }
