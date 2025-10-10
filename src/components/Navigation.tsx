@@ -13,13 +13,6 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -30,44 +23,44 @@ export const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <button
-            onClick={() => scrollToSection("home")}
+          <a
+            href="#home"
             className="text-xl font-bold text-foreground hover:text-primary transition-colors"
           >
             CL
-          </button>
+          </a>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("about")}
+            <a
+              href="#about"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Journey
-            </button>
-            <button
-              onClick={() => scrollToSection("now")}
+            </a>
+            <a
+              href="#now"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Now
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
+            </a>
+            <a
+              href="#projects"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("blog")}
+            </a>
+            <a
+              href="#blog"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Blog
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
+            </a>
+            <a
+              href="#contact"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Contact
-            </button>
+            </a>
             <ThemeToggle />
           </div>
 

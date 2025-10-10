@@ -8,13 +8,6 @@ interface HeroProps {
 }
 
 export const Hero = ({ hero }: HeroProps) => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="home"
@@ -43,20 +36,22 @@ export const Hero = ({ hero }: HeroProps) => {
 
           <div className="flex flex-wrap items-center gap-4 mb-12">
             <Button
+              asChild
               size="lg"
-              onClick={() => scrollToSection("projects")}
               className="border-brutal border-foreground shadow-brutal hover:shadow-brutal-hover transition-all uppercase tracking-wide"
             >
-              View Projects
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <a href="#projects">
+                View Projects
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
-              onClick={() => scrollToSection("contact")}
               className="border-brutal border-foreground uppercase tracking-wide"
             >
-              Get In Touch
+              <a href="#contact">Get In Touch</a>
             </Button>
           </div>
 

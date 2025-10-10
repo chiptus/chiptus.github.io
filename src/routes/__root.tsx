@@ -99,7 +99,7 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html className="scroll-smooth">
       <head>
         <HeadContent />
       </head>

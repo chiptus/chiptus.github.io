@@ -9,7 +9,7 @@ export const NowSection = ({ now }: NowSectionProps) => {
   const { lastUpdated, currentWork, learning, status } = now;
 
   return (
-    <section className="py-24 bg-primary/5">
+    <section className="py-24 bg-primary/5" id="now">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="border-brutal border-foreground bg-background p-8 shadow-brutal">
