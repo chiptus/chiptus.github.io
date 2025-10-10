@@ -1,24 +1,15 @@
-import { useMilestonesData } from "@/hooks/useMilestonesData";
+import React from "react";
 
-export const JourneyTimeline = () => {
-  const { data: milestones, isLoading, error } = useMilestonesData();
+interface JourneyTimelineProps {
+  milestones: Array<{
+    year: string;
+    title: string;
+    description: string;
+    icon: React.ComponentType<{ className?: string }>;
+  }>;
+}
 
-  if (isLoading) {
-    return (
-      <section id="about" className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-center font-mono">Loading...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error || !milestones) {
-    return null;
-  }
-
+export const JourneyTimeline = ({ milestones }: JourneyTimelineProps) => {
   return (
     <section id="about" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -41,7 +32,7 @@ export const JourneyTimeline = () => {
                     <div className="w-0.5 h-full bg-border mt-4" />
                   )}
                 </div>
-                
+
                 <div className="flex-1 pb-12">
                   <div className="font-mono text-sm text-muted-foreground mb-2">
                     {milestone.year}

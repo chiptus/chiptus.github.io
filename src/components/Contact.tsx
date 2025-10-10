@@ -1,9 +1,22 @@
 import { Button } from "@/components/ui/button";
-import { useSocial } from "@/hooks/useSocial";
 
-export const Contact = () => {
-  const { links, social } = useSocial();
+import type { LucideIcon } from "lucide-react";
 
+interface ContactProps {
+  links: Array<{
+    icon: LucideIcon;
+    label: string;
+    value: string;
+    href: string;
+  }>;
+  social: {
+    github: string;
+    linkedin: string;
+    email: string;
+  };
+}
+
+export const Contact = ({ links, social }: ContactProps) => {
   return (
     <section id="contact" className="py-24 bg-primary/5">
       <div className="container mx-auto px-6">

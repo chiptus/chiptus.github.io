@@ -1,24 +1,15 @@
-import { useInterestsData } from "@/hooks/useInterestsData";
+import React from "react";
 
-export const BeyondCode = () => {
-  const { data: interests, isLoading, error } = useInterestsData();
+import type { LucideIcon } from "lucide-react";
 
-  if (isLoading) {
-    return (
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-center font-mono">Loading...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error || !interests) {
-    return null;
-  }
-
+interface BeyondCodeProps {
+  interests: Array<{
+    title: string;
+    description: string;
+    icon: LucideIcon;
+  }>;
+}
+export const BeyondCode = ({ interests }: BeyondCodeProps) => {
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-6">

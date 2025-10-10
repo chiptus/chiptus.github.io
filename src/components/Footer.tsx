@@ -1,10 +1,18 @@
-import { useSocial } from "@/hooks/useSocial";
+import type { LucideIcon } from "lucide-react";
 
-export const Footer = () => {
+interface FooterProps {
+  links: Array<{
+    icon: LucideIcon;
+    label: string;
+    value: string;
+    href: string;
+  }>;
+}
+
+export const Footer = ({ links }: FooterProps) => {
   const currentYear = new Date().getFullYear();
   const lastUpdated = "October 2025";
   const techStack = ["React", "TypeScript", "Tailwind", "Three.js"];
-  const { links } = useSocial();
 
   return (
     <footer className="py-12 border-t-brutal border-foreground bg-background">

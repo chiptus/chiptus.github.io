@@ -1,27 +1,13 @@
 import { Sparkles, MapPin, Calendar } from "lucide-react";
-import { useNowData } from "@/hooks/useNowData";
+import type { NowData } from "@/types/data";
 
-export const NowSection = () => {
-  const { data, isLoading, error } = useNowData();
+interface NowSectionProps {
+  now: NowData;
+}
 
-  if (isLoading) {
-    return (
-      <section className="py-24 bg-primary/5">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-center font-mono">Loading...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+export const NowSection = ({ now }: NowSectionProps) => {
+  const { lastUpdated, currentWork, learning, status } = now;
 
-  if (error || !data) {
-    return null;
-  }
-
-  const { lastUpdated, currentWork, learning, status } = data;
-  
   return (
     <section className="py-24 bg-primary/5">
       <div className="container mx-auto px-6">
@@ -40,14 +26,16 @@ export const NowSection = () => {
 
             <div className="space-y-6">
               <div>
-                <h3 className="font-bold text-xl mb-2 uppercase tracking-tight">Currently Working On</h3>
-                <p className="text-muted-foreground">
-                  {currentWork}
-                </p>
+                <h3 className="font-bold text-xl mb-2 uppercase tracking-tight">
+                  Currently Working On
+                </h3>
+                <p className="text-muted-foreground">{currentWork}</p>
               </div>
 
               <div>
-                <h3 className="font-bold text-xl mb-2 uppercase tracking-tight">Learning</h3>
+                <h3 className="font-bold text-xl mb-2 uppercase tracking-tight">
+                  Learning
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {learning.map((tech) => (
                     <span
@@ -65,9 +53,7 @@ export const NowSection = () => {
                   <MapPin className="h-5 w-5" />
                   Status
                 </h3>
-                <p className="text-muted-foreground">
-                  {status}
-                </p>
+                <p className="text-muted-foreground">{status}</p>
               </div>
             </div>
           </div>

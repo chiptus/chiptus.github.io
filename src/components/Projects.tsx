@@ -1,40 +1,19 @@
 import { useState } from "react";
 import { ProjectCard } from "./ProjectCard";
-import { useProjectsData } from "@/hooks/useProjectsData";
+import type { ProjectsData } from "@/types/data";
 
-export const Projects = () => {
+interface ProjectsProps {
+  projects: ProjectsData;
+}
+
+export const Projects = ({ projects: projectsData }: ProjectsProps) => {
   const [selectedTech, setSelectedTech] = useState("All");
-  const { data, isLoading, error } = useProjectsData();
+  const { projects, allTechs } = projectsData;
 
-  if (isLoading) {
-    return (
-      <section id="projects" className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-center font-mono">Loading projects...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error || !data) {
-    return (
-      <section id="projects" className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-center font-mono text-destructive">Error loading projects</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  const { projects, allTechs } = data;
-  
-  const filteredProjects = selectedTech === "All" 
-    ? projects 
-    : projects.filter(p => p.tech.some(t => t.includes(selectedTech)));
+  const filteredProjects =
+    selectedTech === "All"
+      ? projects
+      : projects.filter((p) => p.tech.some((t) => t.includes(selectedTech)));
 
   return (
     <section id="projects" className="py-24 bg-background">

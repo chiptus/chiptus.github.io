@@ -110,6 +110,9 @@ importers:
       '@tanstack/react-start':
         specifier: ^1.132.51
         version: 1.132.51(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(vite@7.1.9(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.30.1)(tsx@4.20.6))
+      '@tanstack/start-static-server-functions':
+        specifier: ^1.132.48
+        version: 1.132.48
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1728,6 +1731,10 @@ packages:
 
   '@tanstack/start-server-core@1.132.48':
     resolution: {integrity: sha512-jEN2FqRXdoK0bahnLazdne+d3B5q+kXQlypMf+ZmSrqmLWXLTtRPdjL/E0m0741ZSdIYwCBQIdL4QkErhjnsVQ==}
+    engines: {node: '>=22.12.0'}
+
+  '@tanstack/start-static-server-functions@1.132.48':
+    resolution: {integrity: sha512-WE1NYMY201qs5aKAIMH2GMepbSGsjgm2ov+ALY/8w+u3iv0qbK0CYVqjAWYUBSlsy4rCmH1ZfYtUg3bEBIxixw==}
     engines: {node: '>=22.12.0'}
 
   '@tanstack/start-storage-context@1.132.48':
@@ -4843,6 +4850,11 @@ snapshots:
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - crossws
+
+  '@tanstack/start-static-server-functions@1.132.48':
+    dependencies:
+      '@tanstack/start-client-core': 1.132.48
+      seroval: 1.3.2
 
   '@tanstack/start-storage-context@1.132.48':
     dependencies:

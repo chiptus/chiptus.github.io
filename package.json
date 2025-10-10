@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "serve": "vite serve",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-router": "^1.132.47",
     "@tanstack/react-start": "^1.132.51",
+    "@tanstack/start-static-server-functions": "^1.132.48",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

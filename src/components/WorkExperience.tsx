@@ -1,34 +1,22 @@
-import { useWorkExperienceData } from "@/hooks/useWorkExperienceData";
 import { ExternalLink, Briefcase, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/button";
 
-export const WorkExperience = () => {
-  const { data, isLoading, error } = useWorkExperienceData();
+interface WorkExperienceProps {
+  workExperience: {
+    experiences: Array<{
+      role: string;
+      company: string;
+      period: string;
+      description: string;
+      tech: string[];
+      image: string;
+      link?: string;
+      achievements?: string[];
+    }>;
+  };
+}
 
-  if (isLoading) {
-    return (
-      <section id="work" className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-center font-mono">Loading work experience...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error || !data) {
-    return (
-      <section id="work" className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-center font-mono text-destructive">Error loading work experience</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
+export const WorkExperience = ({ workExperience }: WorkExperienceProps) => {
   return (
     <section id="work" className="py-24 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -41,7 +29,7 @@ export const WorkExperience = () => {
           </p>
 
           <div className="space-y-12">
-            {data.experiences.map((exp, index) => (
+            {workExperience.experiences.map((exp, index) => (
               <article
                 key={index}
                 className="border-brutal border-foreground bg-card overflow-hidden group"

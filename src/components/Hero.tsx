@@ -1,10 +1,13 @@
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Scene3D } from "./Scene3D";
-import { useHeroData } from "@/hooks/useHeroData";
+import type { HeroData } from "@/types/data";
 
-export const Hero = () => {
-  const { data, isLoading, error } = useHeroData();
+interface HeroProps {
+  hero: HeroData;
+}
+
+export const Hero = ({ hero }: HeroProps) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -12,47 +15,29 @@ export const Hero = () => {
     }
   };
 
-  if (isLoading || !data) {
-    return (
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      >
-        <Scene3D />
-        <div className="container mx-auto px-6 relative z-10">
-          <p className="text-center font-mono">Loading...</p>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return null;
-  }
-
   return (
     <section
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       <Scene3D />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <div className="mb-8">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight">
-              {data.name}
+              {hero.name}
             </h1>
             <div className="border-l-4 border-primary pl-6 mb-8">
               <p className="text-xl md:text-2xl font-bold mb-2 uppercase tracking-tight">
-                {data.title}
+                {hero.title}
               </p>
               <p className="text-lg text-muted-foreground font-mono">
-                {data.skills}
+                {hero.skills}
               </p>
             </div>
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              {data.description}
+              {hero.description}
             </p>
           </div>
 
@@ -77,7 +62,7 @@ export const Hero = () => {
 
           <div className="flex items-center gap-6">
             <a
-              href={data.social.github}
+              href={hero.social.github}
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -86,7 +71,7 @@ export const Hero = () => {
               <Github className="h-6 w-6" />
             </a>
             <a
-              href={data.social.linkedin}
+              href={hero.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -95,7 +80,7 @@ export const Hero = () => {
               <Linkedin className="h-6 w-6" />
             </a>
             <a
-              href={`mailto:${data.social.email}`}
+              href={`mailto:${hero.social.email}`}
               className="text-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >

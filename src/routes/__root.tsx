@@ -19,15 +19,67 @@ export const Route = createRootRoute({
       },
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1",
+        content: "width=device-width, initial-scale=1.0",
       },
       {
-        title: "TanStack Start Starter",
+        title: "Chaim Lev-Ari | Full-Stack Developer",
       },
+      {
+        name: "description",
+        content:
+          "Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies.",
+      },
+      {
+        name: "author",
+        content: "Chaim Lev-Ari",
+      },
+      {
+        name: "keywords",
+        content: "Full-Stack Developer, React, TypeScript, AI, Web Development",
+      },
+      {
+        property: "og:title",
+        content: "Chaim Lev-Ari | Full-Stack Developer",
+      },
+      {
+        property: "og:description",
+        content:
+          "Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies.",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      // {
+      //   property: "og:image",
+      //   content: "https://lovable.dev/opengraph-image-p98pqg.png",
+      // },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:creator",
+        content: "@chiptus",
+      },
+      // {
+      //   name: "twitter:image",
+      //   content: "https://lovable.dev/opengraph-image-p98pqg.png",
+      // },
     ],
     links: [
       { rel: "stylesheet", href: indexCss },
       { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
+      },
     ],
   }),
   component: RootComponent,
