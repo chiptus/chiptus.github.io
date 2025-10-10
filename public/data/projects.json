@@ -18,44 +18,16 @@
   },
   "projects": [
     {
+      "name": "Upline",
+      "description": "A social festival companion app planned and implemented using Lovable and Claude Code.",
+      "tech": ["React", "Vite", "Supabase"],
+      "image": "/assets/upline.jpg"
+    },
+    {
       "name": "myplace",
-      "description": "AI-powered bot that helps users build and customize landing pages through natural conversation.",
-      "tech": ["React", "AI/ML", "Node.js", "WebSockets"],
+      "description": "A WhatsApp bot to build landing pages through natural conversation.",
+      "tech": ["ExpressJS", "Remix", "PostgreSQL", "Redis"],
       "image": "/assets/myplace.jpg"
-    },
-    {
-      "name": "cnvrg.io",
-      "description": "Enterprise ML operations platform enabling data scientists to build, train, and deploy machine learning models at scale.",
-      "tech": ["React", "Python", "Kubernetes", "TensorFlow"],
-      "link": "https://cnvrg.io",
-      "image": "/assets/cnvrg.jpg"
-    },
-    {
-      "name": "getupline",
-      "description": "Festival companion app providing real-time schedules, maps, and social features for event attendees.",
-      "tech": ["React Native", "Firebase", "Maps API"],
-      "image": "/assets/getupline.jpg"
-    },
-    {
-      "name": "Cobwebs",
-      "description": "Intelligent web crawler system with machine learning capabilities for data extraction and analysis.",
-      "tech": ["Node.js", "Python", "ML", "MongoDB"],
-      "image": "/assets/cobwebs.jpg"
-    },
-    {
-      "name": "Dwarven Realms",
-      "description": "Fantasy game development project using Unreal Engine, featuring rich environments and engaging gameplay.",
-      "tech": ["Unreal Engine", "C++", "Blueprints", "3D Modeling"],
-      "image": "/assets/dwarven-realms.jpg"
     }
-  ],
-  "allTechs": [
-    "All",
-    "React",
-    "TypeScript",
-    "AI/ML",
-    "Python",
-    "Node.js",
-    "Kubernetes"
   ]
 }

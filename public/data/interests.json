@@ -1,17 +1,32 @@
 [
   {
+    "icon": "Mountain",
+    "title": "Trail Running",
+    "description": "Exploring trails and nature on foot"
+  },
+  {
+    "icon": "Flower2",
+    "title": "Iyengar Yoga",
+    "description": "Practicing alignment-based yoga"
+  },
+  {
     "icon": "Music",
-    "title": "Music",
-    "description": "Electronic music production and DJing"
+    "title": "Live Music & Festivals",
+    "description": "Attending concerts and music festivals"
+  },
+  {
+    "icon": "BookOpen",
+    "title": "Fantasy Books",
+    "description": "Wheel of Time, Brandon Sanderson series"
+  },
+  {
+    "icon": "Gamepad2",
+    "title": "Video Games",
+    "description": "Gaming enthusiast"
   },
   {
     "icon": "Mountain",
-    "title": "Hiking",
-    "description": "Exploring trails and nature"
-  },
-  {
-    "icon": "Coffee",
-    "title": "Coffee",
-    "description": "Specialty coffee enthusiast"
+    "title": "Bouldering",
+    "description": "Indoor and outdoor climbing"
   }
 ]

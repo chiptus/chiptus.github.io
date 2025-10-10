@@ -1,45 +1,96 @@
 {
   "experiences": [
     {
-      "company": "Portainer",
-      "role": "Frontend Lead",
-      "period": "2020 - 2023",
-      "description": "Led frontend migration to React for a comprehensive container management platform used by thousands of developers worldwide.",
+      "company": "Crater Studios",
+      "role": "Game Developer",
+      "period": "Mar 2024 - Dec 2024",
+      "description": "Developed engaging multiplayer gaming experiences, focusing on server infrastructure and gameplay systems for 'Dwarven Realms'.",
       "responsibilities": [
-        "Architected and led phased migration from AngularJS to React with TypeScript",
-        "Implemented micro-frontend approach for gradual migration with zero downtime",
-        "Created shared component library and established modern development practices",
-        "Mentored team of 5 frontend developers"
+        "Architected server infrastructure scaling from hundreds to 10,000 concurrent players",
+        "Led development of fellowship mechanics and pet systems from concept to production",
+        "Developed gameplay features using Unreal Engine, C++, and TypeScript",
+        "Collaborated in 5-person development team on full game development cycle"
       ],
       "achievements": [
-        "Reduced bug reports by 40%",
-        "Improved page load times by 60%",
-        "Enabled 3x faster feature development",
-        "Platform used by 500K+ developers"
+        "Scaled infrastructure to support peak traffic of 3,000 concurrent users",
+        "Delivered core multiplayer features for Dwarven Realms game launch"
       ],
-      "tech": ["React", "TypeScript", "Docker", "Kubernetes"],
+      "tech": [
+        "NodeJS",
+        "Socket.io",
+        "Unreal Engine",
+        "Redis",
+        "C++",
+        "TypeScript"
+      ],
+      "link": "https://www.craterstudiosgames.com",
+      "image": "/assets/dwarven-realms.jpg"
+    },
+    {
+      "company": "Portainer",
+      "role": "Full Stack Engineer",
+      "period": "Mar 2020 - Apr 2024",
+      "description": "Led frontend migration to React and developed edge computing features for a container management platform supporting a global user base. Previously collaborated with Portainer part-time (2018-2019).",
+      "responsibilities": [
+        "Led team of 4-5 developers in migrating platform from AngularJS to React",
+        "Established unit testing framework to enhance code reliability",
+        "Collaborated with design and product to create React component library",
+        "Developed cutting-edge edge computing features for distributed container management"
+      ],
+      "achievements": [
+        "Successfully migrated legacy codebase ensuring consistent user experience",
+        "Part of company's growth from 2-person startup to multi-team development organization",
+        "Platform used by 500K+ developers globally"
+      ],
+      "tech": [
+        "Go",
+        "AngularJS",
+        "React",
+        "TypeScript",
+        "Docker",
+        "Kubernetes"
+      ],
       "link": "https://www.portainer.io",
       "image": "/assets/portainer.jpg"
     },
     {
       "company": "cnvrg.io",
-      "role": "Software Engineer",
-      "period": "2016 - 2020",
-      "description": "Built enterprise ML operations platform enabling data scientists to build, train, and deploy machine learning models at scale.",
+      "role": "Frontend Lead Developer",
+      "period": "Jan 2019 - Feb 2020",
+      "description": "Led frontend team for enterprise machine learning platform, directing Rails to Vue.js migration while delivering continuous feature improvements.",
       "responsibilities": [
-        "Developed frontend features for ML model training and deployment",
-        "Integrated Kubernetes orchestration for scalable model execution",
-        "Built data visualization tools for model performance metrics",
-        "Collaborated with data scientists to understand workflow requirements"
+        "Led frontend team in close collaboration with designer",
+        "Directed Rails to Vue.js migration while maintaining continuous feature delivery",
+        "Established comprehensive unit and end-to-end testing infrastructure",
+        "Delivered features enhancing user experience for enterprise ML platform"
       ],
       "achievements": [
-        "Launched platform used by Fortune 500 companies",
-        "Built real-time monitoring dashboard for ML pipelines",
-        "Optimized rendering for large-scale data visualization"
+        "Successfully migrated to Vue.js without disrupting feature delivery",
+        "Improved code quality and reduced bugs through testing infrastructure",
+        "Platform used by Fortune 500 companies"
       ],
-      "tech": ["React", "Python", "Kubernetes", "TensorFlow"],
+      "tech": ["Vue", "Ruby on Rails", "PostgreSQL", "JavaScript"],
       "link": "https://cnvrg.io",
       "image": "/assets/cnvrg.jpg"
+    },
+    {
+      "company": "Cobwebs Technologies",
+      "role": "Software Engineer",
+      "period": "2013 - 2018",
+      "description": "Founding team member developing Business Intelligence applications for global agencies, building full-stack solutions and web crawler systems.",
+      "responsibilities": [
+        "Built full-stack Business Intelligence applications for global agencies",
+        "Designed and developed web crawler system with integrated machine learning capabilities",
+        "Developed using AngularJS, C#, .NET, and SQL Server",
+        "Led training and onboarding of new developers"
+      ],
+      "achievements": [
+        "Part of founding team establishing data intelligence solutions",
+        "Delivered critical BI tools for business intelligence agencies worldwide"
+      ],
+      "tech": ["AngularJS", "C#", ".NET", "SQL Server", "Machine Learning"],
+      "link": "https://www.cobwebs.com",
+      "image": "/assets/cobwebs.jpg"
     }
   ]
 }

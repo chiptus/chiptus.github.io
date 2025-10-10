@@ -8,7 +8,12 @@ interface ProjectsProps {
 
 export const Projects = ({ projects: projectsData }: ProjectsProps) => {
   const [selectedTech, setSelectedTech] = useState("All");
-  const { projects, allTechs } = projectsData;
+  const { projects } = projectsData;
+
+  const allTechs = [
+    "All",
+    ...Array.from(new Set(projects.flatMap((p) => p.tech))).sort(),
+  ];
 
   const filteredProjects =
     selectedTech === "All"

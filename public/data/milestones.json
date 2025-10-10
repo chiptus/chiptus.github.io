@@ -1,26 +1,26 @@
 [
   {
-    "year": "2010s",
-    "title": "Early Projects",
-    "description": "Built Cobwebs web crawler and Dwarven Realms game",
+    "year": "2013-2018",
+    "title": "Cobwebs Technologies",
+    "description": "Founding team member building BI applications and web crawler systems",
     "icon": "Terminal"
   },
   {
-    "year": "2016-2020",
-    "title": "ML & Festivals",
-    "description": "Developed cnvrg.io ML platform and getupline festival app",
+    "year": "2019-2020",
+    "title": "cnvrg.io",
+    "description": "Frontend Lead for enterprise ML platform, migrated Rails to Vue.js",
     "icon": "Brain"
   },
   {
-    "year": "2020-2023",
+    "year": "2020-2024",
     "title": "Portainer",
-    "description": "Led React migration for container management platform",
+    "description": "Full Stack Engineer, led AngularJS to React migration",
     "icon": "Rocket"
   },
   {
     "year": "2024",
-    "title": "AI Innovation",
-    "description": "Built myplace AI-powered landing page bot",
-    "icon": "Briefcase"
+    "title": "Crater Studios",
+    "description": "Game Developer for Dwarven Realms multiplayer game",
+    "icon": "Gamepad2"
   }
 ]

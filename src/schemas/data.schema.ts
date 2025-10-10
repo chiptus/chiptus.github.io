@@ -21,22 +21,7 @@ export const projectSchema = z.object({
 });
 
 export const projectsSchema = z.object({
-  featuredProject: z.object({
-    name: z.string(),
-    description: z.string(),
-    tech: z.array(z.string()),
-    link: z.string().url().optional(),
-    image: z.string(),
-    caseStudy: z
-      .object({
-        problem: z.string(),
-        solution: z.string(),
-        impact: z.array(z.string()),
-      })
-      .optional(),
-  }),
   projects: z.array(projectSchema),
-  allTechs: z.array(z.string()),
 });
 
 export const nowSchema = z.object({
@@ -53,7 +38,7 @@ export const workExperienceItemSchema = z.object({
   description: z.string(),
   tech: z.array(z.string()),
   image: z.string(),
-  link: z.string().url().optional(),
+  link: z.string().url().optional().nullable(),
   achievements: z.array(z.string()).optional(),
 });
 
