@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { ProjectCard } from "./ProjectCard";
-import type { ProjectsData } from "@/types/data";
+import type { ProjectsData } from "@/data/data.schema";
 
 interface ProjectsProps {
   projects: ProjectsData;
 }
 
 export const Projects = ({ projects: projectsData }: ProjectsProps) => {
-  const [selectedTech, setSelectedTech] = useState("All");
+  const [selectedTech, _setSelectedTech] = useState("All");
   const { projects } = projectsData;
 
-  const allTechs = [
-    "All",
-    ...Array.from(new Set(projects.flatMap((p) => p.tech))).sort(),
-  ];
+  // const allTechs = [
+  //   "All",
+  //   ...Array.from(new Set(projects.flatMap((p) => p.tech))).sort(),
+  // ];
 
   const filteredProjects =
     selectedTech === "All"
@@ -31,7 +31,7 @@ export const Projects = ({ projects: projectsData }: ProjectsProps) => {
             Personal projects & experiments
           </p>
 
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <div className="flex flex-wrap gap-3 mb-8">
               {allTechs.map((tech) => (
                 <button
@@ -47,7 +47,7 @@ export const Projects = ({ projects: projectsData }: ProjectsProps) => {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project, index) => (

@@ -1,5 +1,5 @@
 import { Sparkles, MapPin, Calendar } from "lucide-react";
-import type { NowData } from "@/types/data";
+import type { NowData } from "@/data/data.schema";
 
 interface NowSectionProps {
   now: NowData;
