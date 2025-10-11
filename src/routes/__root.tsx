@@ -11,6 +11,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import indexCss from "../index.css?url";
 import appCss from "../App.css?url";
 
+const siteUrl = "https://chaim.lev-ari.me";
+const ogImageUrl = `${siteUrl}/og-image.svg`;
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -35,8 +38,14 @@ export const Route = createRootRoute({
       },
       {
         name: "keywords",
-        content: "Full-Stack Developer, React, TypeScript, AI, Web Development",
+        content:
+          "Full-Stack Developer, React, TypeScript, Go, AI, Web Development, Software Engineer",
       },
+      {
+        name: "theme-color",
+        content: "#0a0a0a",
+      },
+      // Open Graph meta tags
       {
         property: "og:title",
         content: "Chaim Lev-Ari | Full-Stack Developer",
@@ -50,10 +59,27 @@ export const Route = createRootRoute({
         property: "og:type",
         content: "website",
       },
-      // {
-      //   property: "og:image",
-      //   content: "https://lovable.dev/opengraph-image-p98pqg.png",
-      // },
+      {
+        property: "og:url",
+        content: siteUrl,
+      },
+      {
+        property: "og:image",
+        content: ogImageUrl,
+      },
+      {
+        property: "og:image:width",
+        content: "1200",
+      },
+      {
+        property: "og:image:height",
+        content: "630",
+      },
+      {
+        property: "og:image:alt",
+        content: "Chaim Lev-Ari - Full-Stack Developer",
+      },
+      // Twitter Card meta tags
       {
         name: "twitter:card",
         content: "summary_large_image",
@@ -62,14 +88,24 @@ export const Route = createRootRoute({
         name: "twitter:creator",
         content: "@chiptus",
       },
-      // {
-      //   name: "twitter:image",
-      //   content: "https://lovable.dev/opengraph-image-p98pqg.png",
-      // },
+      {
+        name: "twitter:title",
+        content: "Chaim Lev-Ari | Full-Stack Developer",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies.",
+      },
+      {
+        name: "twitter:image",
+        content: ogImageUrl,
+      },
     ],
     links: [
       { rel: "stylesheet", href: indexCss },
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: siteUrl },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
@@ -79,6 +115,36 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
+      },
+    ],
+    scripts: [
+      // Structured Data (JSON-LD) for better Google understanding
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Chaim Lev-Ari",
+          url: siteUrl,
+          image: ogImageUrl,
+          jobTitle: "Full-Stack Developer",
+          description:
+            "Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies.",
+          knowsAbout: [
+            "React",
+            "TypeScript",
+            "JavaScript",
+            "Go",
+            "Web Development",
+            "Software Engineering",
+            "AI",
+          ],
+          sameAs: [
+            "https://github.com/chiptus",
+            "http://linkedin.com/in/chiptus",
+            "https://twitter.com/chiptus",
+          ],
+        }),
       },
     ],
   }),
