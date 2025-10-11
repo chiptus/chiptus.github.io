@@ -21,13 +21,13 @@
       "name": "Upline",
       "description": "A social festival companion app planned and implemented using Lovable and Claude Code.",
       "tech": ["React", "Vite", "Supabase"],
-      "image": "/assets/getupline.jpg"
+      "image": "/assets/getupline.png"
     },
     {
       "name": "myplace",
       "description": "A WhatsApp bot to build landing pages through natural conversation.",
       "tech": ["ExpressJS", "Remix", "PostgreSQL", "Redis"],
-      "image": "/assets/myplace.jpg"
+      "image": "/assets/myplace.png"
     }
   ]
 }

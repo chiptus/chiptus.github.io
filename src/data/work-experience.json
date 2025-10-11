@@ -51,7 +51,7 @@
         "Kubernetes"
       ],
       "link": "https://www.portainer.io",
-      "image": "/assets/portainer.jpg"
+      "image": "/assets/portainer.png"
     },
     {
       "company": "cnvrg.io",
@@ -90,7 +90,7 @@
       ],
       "tech": ["AngularJS", "C#", ".NET", "SQL Server", "Machine Learning"],
       "link": "https://www.cobwebs.com",
-      "image": "/assets/cobwebs.jpg"
+      "image": "/assets/cobwebs.png"
     }
   ]
 }
