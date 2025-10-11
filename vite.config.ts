@@ -9,9 +9,14 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+
   plugins: [
     tsConfigPaths(),
     tanstackStart({
+      sitemap: {
+        enabled: true,
+        host: "https://chaim.lev-ari.me",
+      },
       prerender: {
         enabled: true,
         // Put pages under `/page/index.html` instead of `/page.html` when desired

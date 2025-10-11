@@ -185,8 +185,8 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
  */
 const getSiteUrl = () => {
   // Check for Vercel deployment URL first
-  if (import.meta.env.VITE_VERCEL_URL) {
-    return `https://${import.meta.env.VITE_VERCEL_URL}`;
+  if (import.meta.env.VITE_VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${import.meta.env.VITE_VERCEL_PROJECT_PRODUCTION_URL}`;
   }
 
   // For client-side, use window.location.origin
