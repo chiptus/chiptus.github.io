@@ -1,7 +1,7 @@
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Scene3D } from "./Scene3D";
-import type { HeroData } from "@/types/data";
+import type { HeroData } from "@/data/data.schema";
 
 interface HeroProps {
   hero: HeroData;

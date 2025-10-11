@@ -1,0 +1,97 @@
+---
+interface Props {
+  hero: HeroData;
+}
+
+import type { HeroData } from "@/data/data.schema";
+import { Scene3D } from "./Scene3D";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRightIcon,
+  GithubIcon,
+  LinkedinIcon,
+  MailIcon,
+} from "lucide-react";
+import { ButtonLink } from "./ui/button-link";
+
+const { hero } = Astro.props;
+---
+
+<section
+  id="home"
+  class="min-h-screen flex items-center justify-center relative overflow-hidden"
+>
+  <Scene3D client:only="react" />
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-4xl mx-auto animate-fade-in">
+      <div class="mb-8">
+        <h1
+          class="text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight"
+        >
+          {hero.name}
+        </h1>
+        <div class="border-l-4 border-primary pl-6 mb-8">
+          <p
+            class="text-xl md:text-2xl font-bold mb-2 uppercase tracking-tight"
+          >
+            {hero.title}
+          </p>
+          <p class="text-lg text-muted-foreground font-mono">
+            {hero.skills}
+          </p>
+        </div>
+        <p class="text-lg text-muted-foreground mb-12 max-w-2xl">
+          {hero.description}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4 mb-12">
+        <ButtonLink
+          href="#projects"
+          size="lg"
+          className="border-brutal border-foreground shadow-brutal hover:shadow-brutal-hover transition-all uppercase tracking-wide"
+        >
+          View Projects
+          <ArrowRightIcon className="ml-2 h-5 w-5" />
+        </ButtonLink>
+        <ButtonLink
+          href="#contact"
+          size="lg"
+          variant="outline"
+          className="border-brutal border-foreground uppercase tracking-wide"
+        >
+          Get In Touch
+        </ButtonLink>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a
+          href={hero.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-foreground hover:text-primary transition-colors"
+          aria-label="GitHub"
+        >
+          <GithubIcon className="h-6 w-6" />
+        </a>
+        <a
+          href={hero.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-foreground hover:text-primary transition-colors"
+          aria-label="LinkedIn"
+        >
+          <LinkedinIcon className="h-6 w-6" />
+        </a>
+        <a
+          href={`mailto:${hero.social.email}`}
+          class="text-foreground hover:text-primary transition-colors"
+          aria-label="Email"
+        >
+          <MailIcon className="h-6 w-6" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
