@@ -184,9 +184,16 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
  * Falls back to localhost for development
  */
 const getSiteUrl = () => {
+  // Check for Vercel deployment URL first
+  if (import.meta.env.VITE_VERCEL_URL) {
+    return `https://${import.meta.env.VITE_VERCEL_URL}`;
+  }
+
+  // For client-side, use window.location.origin
   if (typeof window !== "undefined") {
     return window.location.origin;
   }
-  // SSR fallback - will be replaced when rendered on client
-  return "https://chaim.lev-ari.me";
+
+  // Fallback for local development
+  return "http://localhost:3000";
 };
