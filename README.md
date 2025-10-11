@@ -1,116 +1,46 @@
-# Chaim Lev-Ari - Portfolio Website
+# Astro Starter Kit: Basics
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS featuring a brutalist design aesthetic with dark/light mode support and 3D animated elements.
-
-## Features
-
-- 🌓 **Light/Dark Mode** - Theme toggle with localStorage persistence
-- 📱 **Fully Responsive** - Mobile-first design that looks great on all devices
-- 🎨 **Brutalist Design** - Bold borders, strong shadows, and striking typography
-- 🎬 **3D Animations** - Interactive Three.js wireframe shapes in hero section
-- 🗂️ **Data-Driven** - JSON-based content management system
-- 🎯 **Smooth Navigation** - Single-page scrolling experience
-- ♿ **Accessible** - Semantic HTML and ARIA labels
-- 🚀 **Production Ready** - Optimized build with Vite and SWC
-
-## Tech Stack
-
-- **Framework:** React 18 with TypeScript
-- **Build Tool:** Vite with SWC
-- **Styling:** Tailwind CSS with CSS variables
-- **UI Components:** shadcn/ui (Radix UI + Tailwind)
-- **Data Fetching:** TanStack Query (React Query)
-- **3D Graphics:** @react-three/fiber + @react-three/drei
-- **Theme:** next-themes
-- **Icons:** Lucide React
-- **Routing:** React Router DOM
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 16+ and npm
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd <project-directory>
+```sh
+pnpm create astro@latest -- --template basics
 ```
 
-2. Install dependencies:
-```bash
-npm install
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
 ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
-The site will be available at `http://localhost:8080`
+## 🧞 Commands
 
-## Build for Production
+All commands are run from the root of the project, from a terminal:
 
-Create an optimized production build:
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-```bash
-npm run build
-```
+## 👀 Want to learn more?
 
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Customization
-
-### Update Content
-
-All portfolio content is managed through JSON files in `/public/data/`:
-
-- `hero.json` - Name, title, skills, and social links
-- `projects.json` - Project listings with descriptions and links
-- `work-experience.json` - Work history and roles
-- `milestones.json` - Career timeline events
-- `now.json` - Current activities and interests
-- `interests.json` - Beyond code hobbies and passions
-
-Simply edit these JSON files and refresh the page to see your changes.
-
-### Modify Color Scheme
-
-The color scheme is defined in `src/index.css`. Update the CSS variables for both light and dark modes:
-
-```css
-:root {
-  --primary: 210 71% 58%;  /* Blue accent */
-  /* ... other colors */
-}
-
-.dark {
-  --primary: 210 71% 58%;  /* Same blue accent */
-  /* ... other colors */
-}
-```
-
-## Deployment
-
-This project can be deployed to any static hosting service:
-
-- **Lovable** - Click "Publish" in the Lovable editor
-- **Vercel** - Connect your Git repository
-- **Netlify** - Drag and drop the `dist` folder
-- **GitHub Pages** - Use the build output
-
-## License
-
-MIT License - feel free to use this template for your own portfolio!
-
-## Contact
-
-- Email: chiptus@gmail.com
-- GitHub: [@chiptus](https://github.com/chiptus)
-- LinkedIn: [chiptus](http://linkedin.com/in/chiptus)
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

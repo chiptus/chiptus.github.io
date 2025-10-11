@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+
+const siteUrl = import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+  : Astro.url.origin;
+const ogImageUrl = new URL("/og-image.png", Astro.url).toString();
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Chaim Lev-Ari",
+  url: siteUrl,
+  image: ogImageUrl,
+  jobTitle: "Full-Stack Developer",
+  description:
+    "Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies.",
+  knowsAbout: [
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Go",
+    "Web Development",
+    "Software Engineering",
+    "AI",
+  ],
+  sameAs: [
+    "https://github.com/chiptus",
+    "http://linkedin.com/in/chiptus",
+    "https://twitter.com/chiptus",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>Chaim Lev-Ari | Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies."
+    />
+    <meta name="author" content="Chaim Lev-Ari" />
+    <meta
+      name="keywords"
+      content="Full-Stack Developer, React, TypeScript, Go, AI, Web Development, Software Engineer"
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Chaim Lev-Ari | Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Chaim Lev-Ari - Full-Stack Developer"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@chiptus" />
+    <meta name="twitter:title" content="Chaim Lev-Ari | Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Full-stack developer with 10+ years experience, specializing in React, TypeScript, and modern web technologies."
+    />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

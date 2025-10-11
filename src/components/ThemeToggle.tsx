@@ -1,24 +1,18 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { createClientOnlyFn } from "@tanstack/react-start";
-import { ClientOnly } from "@tanstack/react-router";
 
-const saveToStorage = createClientOnlyFn((key: string, value: unknown) => {
+const saveToStorage = (key: string, value: unknown) => {
   localStorage.setItem(key, JSON.stringify(value));
-});
+};
 
-const getFromStorage = createClientOnlyFn((key: string) => {
+const getFromStorage = (key: string) => {
   const item = localStorage.getItem(key);
   return item ? JSON.parse(item) : null;
-});
+};
 
 export function ThemeToggle() {
-  return (
-    <ClientOnly>
-      <ClientOnlyThemeToggle />
-    </ClientOnly>
-  );
+  return <ClientOnlyThemeToggle />;
 }
 
 export const ClientOnlyThemeToggle = () => {

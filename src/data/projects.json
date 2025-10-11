@@ -21,7 +21,7 @@
       "name": "Upline",
       "description": "A social festival companion app planned and implemented using Lovable and Claude Code.",
       "tech": ["React", "Vite", "Supabase"],
-      "image": "/assets/upline.jpg"
+      "image": "/assets/getupline.jpg"
     },
     {
       "name": "myplace",
