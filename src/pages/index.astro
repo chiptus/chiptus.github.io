@@ -7,7 +7,7 @@ import Hero from "@/components/hero.astro";
 import { WorkExperience } from "@/components/WorkExperience";
 import { JourneyTimeline } from "@/components/JourneyTimeline";
 import { BeyondCode } from "@/components/BeyondCode";
-import { BlogSection } from "@/components/BlogSection";
+// import { BlogSection } from "@/components/BlogSection";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { NowSection } from "@/components/NowSection";
@@ -76,7 +76,7 @@ const interestsWithIcons = data.interests.map((interest) => ({
       <NowSection now={data.now} />
       <BeyondCode interests={interestsWithIcons} />
       <Projects projects={data.projects} />
-      <BlogSection />
+      <!-- <BlogSection /> -->
       <Contact links={links} social={social} />
     </main>
     <Footer links={links} />

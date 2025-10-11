@@ -49,12 +49,12 @@ export const Navigation = () => {
             >
               Projects
             </a>
-            <a
+            {/* <a
               href="#blog"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
             >
               Blog
-            </a>
+            </a> */}
             <a
               href="#contact"
               className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
