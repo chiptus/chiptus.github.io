@@ -1,5 +1,16 @@
-import { ExternalLink, Github } from "lucide-react";
+import {
+  CheckCircle2Icon,
+  ExternalLink,
+  FileTextIcon,
+  Github,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 
 export interface Project {
   name: string;
@@ -31,7 +42,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-3 uppercase tracking-tight">{project.name}</h3>
+        <h3 className="text-2xl font-bold mb-3 uppercase tracking-tight">
+          {project.name}
+        </h3>
         <p className="text-muted-foreground mb-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-6">
@@ -44,6 +57,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             </span>
           ))}
         </div>
+
+        {/* <CaseStudy caseStudy={project.caseStudy} /> */}
 
         <div className="flex gap-3">
           {project.link && (
@@ -87,3 +102,47 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     </article>
   );
 };
+
+function CaseStudy({ caseStudy }: { caseStudy: Project["caseStudy"] }) {
+  if (!caseStudy) return null;
+
+  return (
+    <Accordion type="single" collapsible className="w-full relative mb-6">
+      <AccordionItem value="case-study" className="border-0">
+        <AccordionTrigger>
+          <FileTextIcon /> View Case Study
+        </AccordionTrigger>
+
+        <AccordionContent className="absolute bg-white">
+          <section>
+            <h4 className="font-bold text-lg mb-2 uppercase tracking-tight">
+              Problem
+            </h4>
+            <p className="text-muted-foreground mb-4">{caseStudy.problem}</p>
+          </section>
+
+          <section>
+            <h4 className="font-bold text-lg mb-2 uppercase tracking-tight">
+              Solution
+            </h4>
+            <p className="text-muted-foreground mb-4">{caseStudy.solution}</p>
+          </section>
+
+          <section>
+            <h4 className="font-bold text-lg mb-2 uppercase tracking-tight">
+              Impact
+            </h4>
+            <ul className="list-disc list-inside text-muted-foreground space-y-3">
+              {caseStudy.impact.map((point, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <CheckCircle2Icon className="h-5 w-5 text-primary shrink-0" />
+                  <span className="text-sm text-muted-foreground">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
