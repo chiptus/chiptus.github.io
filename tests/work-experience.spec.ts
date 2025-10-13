@@ -58,10 +58,10 @@ test.describe('Work Experience Section', () => {
     // Test first card (Crater Studios) in detail
     const firstCard = page.locator('#work article').first();
 
-    // Verify role is displayed
+    // Verify role is displayed (DOM text is "Game Developer", displayed as "GAME DEVELOPER" via CSS uppercase)
     const role = firstCard.locator('h3');
     await expect(role).toBeVisible();
-    await expect(role).toHaveText('GAME DEVELOPER');
+    await expect(role).toHaveText('Game Developer');
 
     // Verify company name is displayed
     await expect(firstCard.getByText('Crater Studios')).toBeVisible();
@@ -74,13 +74,13 @@ test.describe('Work Experience Section', () => {
     await expect(description).toBeVisible();
     await expect(description).toContainText('Developed engaging multiplayer gaming experiences');
 
-    // Verify technologies are displayed
+    // Verify technologies are displayed (DOM text is title case, displayed as uppercase via CSS)
     const techTags = firstCard.locator('span.font-mono.text-xs');
     await expect(techTags).toHaveCount(6); // NodeJS, Socket.io, Unreal Engine, Redis, C++, TypeScript
 
-    // Check for specific technologies
-    await expect(firstCard.getByText('NODEJS', { exact: true })).toBeVisible();
-    await expect(firstCard.getByText('TYPESCRIPT', { exact: true })).toBeVisible();
+    // Check for specific technologies (component renders with uppercase CSS class)
+    await expect(firstCard.getByText('NodeJS', { exact: true })).toBeVisible();
+    await expect(firstCard.getByText('TypeScript', { exact: true })).toBeVisible();
     await expect(firstCard.getByText('C++', { exact: true })).toBeVisible();
   });
 
@@ -88,8 +88,8 @@ test.describe('Work Experience Section', () => {
     // Get first card with achievements
     const firstCard = page.locator('#work article').first();
 
-    // Verify "Key Achievements" heading is displayed
-    const achievementsHeading = firstCard.getByText('KEY ACHIEVEMENTS');
+    // Verify "Key Achievements" heading is displayed (DOM text is title case, displayed as uppercase via CSS)
+    const achievementsHeading = firstCard.getByText('Key Achievements');
     await expect(achievementsHeading).toBeVisible();
 
     // Verify achievement list items are present

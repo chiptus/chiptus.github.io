@@ -17,8 +17,8 @@ test.describe('Theme Toggle', () => {
     // Navigate to the page
     await page.goto(baseURL);
 
-    // Verify theme toggle button is visible
-    const themeToggle = page.getByRole('button', { name: /toggle theme/i });
+    // Verify theme toggle button is visible (use .first() because there are desktop + mobile toggles)
+    const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
     await expect(themeToggle).toBeVisible();
 
     // Verify button has proper aria-label
@@ -40,8 +40,8 @@ test.describe('Theme Toggle', () => {
     const html = page.locator('html');
     await expect(html).toHaveClass(/light/);
 
-    // 2. Click the theme toggle button to switch to dark mode
-    const themeToggle = page.getByRole('button', { name: /toggle theme/i });
+    // 2. Click the theme toggle button to switch to dark mode (use .first() because there are desktop + mobile toggles)
+    const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
     await themeToggle.click();
 
     // 3. Verify theme changed to dark
@@ -75,8 +75,8 @@ test.describe('Theme Toggle', () => {
     });
     expect(themeStorage).toBe('light');
 
-    // 2. Toggle to dark mode
-    const themeToggle = page.getByRole('button', { name: /toggle theme/i });
+    // 2. Toggle to dark mode (use .first() because there are desktop + mobile toggles)
+    const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
     await themeToggle.click();
 
     // 3. Verify localStorage updated to dark
@@ -101,8 +101,8 @@ test.describe('Theme Toggle', () => {
     // Navigate to the page
     await page.goto(baseURL);
 
-    // 1. Toggle to dark mode
-    const themeToggle = page.getByRole('button', { name: /toggle theme/i });
+    // 1. Toggle to dark mode (use .first() because there are desktop + mobile toggles)
+    const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
     await themeToggle.click();
 
     // 2. Verify dark mode is active
@@ -170,8 +170,8 @@ test.describe('Theme Toggle', () => {
 
     expect(focused).toBe(true);
 
-    // 2. Verify button is focused
-    const themeToggle = page.getByRole('button', { name: /toggle theme/i });
+    // 2. Verify button is focused (use .first() because there are desktop + mobile toggles)
+    const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
     await expect(themeToggle).toBeFocused();
 
     // 3. Press Enter to activate theme toggle

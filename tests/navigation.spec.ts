@@ -65,8 +65,8 @@ test.describe('Navigation Bar', () => {
     const contactLink = nav.locator('a[href="#contact"], a:has-text("Contact")');
     await expect(contactLink).toBeVisible();
 
-    // 9. Verify theme toggle is present
-    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]');
+    // 9. Verify theme toggle is present (use .first() because there are desktop + mobile toggles)
+    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]').first();
     await expect(themeToggle).toBeVisible();
   });
 
@@ -165,8 +165,8 @@ test.describe('Navigation Bar', () => {
     const logo = nav.locator('a[href="#home"], a[href="/"]').first();
     await expect(logo).toBeVisible();
 
-    // 3. Verify theme toggle is visible on mobile
-    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]');
+    // 3. Verify theme toggle is visible on mobile (use .first() because there are desktop + mobile toggles)
+    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]').first();
     await expect(themeToggle).toBeVisible();
 
     // 4. Verify desktop navigation links are hidden on mobile
@@ -245,8 +245,8 @@ test.describe('Navigation Bar', () => {
     await page.waitForTimeout(500);
     expect(page.url()).toContain('#about');
 
-    // 4. Verify theme toggle is keyboard accessible
-    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]');
+    // 4. Verify theme toggle is keyboard accessible (use .first() because there are desktop + mobile toggles)
+    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]').first();
     await themeToggle.focus();
     await expect(themeToggle).toBeFocused();
 

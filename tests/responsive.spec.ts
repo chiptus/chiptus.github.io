@@ -37,8 +37,8 @@ test.describe("Responsive Design", () => {
       .first();
     await expect(themeToggle).toBeVisible();
 
-    // HERO SECTION: Verify hero section is visible and stacked
-    const heroTitle = page.getByRole("heading").getByText("CHAIM LEV-ARI");
+    // HERO SECTION: Verify hero section is visible and stacked (DOM text is title case, displayed as uppercase via CSS)
+    const heroTitle = page.getByRole("heading").getByText("Chaim Lev-Ari");
     await expect(heroTitle).toBeVisible();
 
     const heroSubtitle = page.getByText("Full-Stack Developer", {
@@ -50,22 +50,22 @@ test.describe("Responsive Design", () => {
     const viewProjectsBtn = page.getByRole("link", { name: /View Projects/i });
     await expect(viewProjectsBtn).toBeVisible();
 
-    // WORK EXPERIENCE: Scroll to and verify work section
+    // WORK EXPERIENCE: Scroll to and verify work section (DOM text is title case, displayed as uppercase via CSS)
     await page.locator("#work").scrollIntoViewIfNeeded();
 
-    const workTitle = page.getByText("WORK EXPERIENCE");
+    const workTitle = page.getByText("Work Experience");
     await expect(workTitle).toBeVisible();
 
-    // PROJECTS SECTION: Verify projects display in single column
+    // PROJECTS SECTION: Verify projects display in single column (DOM text is title case, displayed as uppercase via CSS)
     await page.locator("#projects").scrollIntoViewIfNeeded();
 
-    const projectsTitle = page.getByText("SIDE PROJECTS");
+    const projectsTitle = page.getByText("Side Projects");
     await expect(projectsTitle).toBeVisible();
 
-    // CONTACT SECTION: Verify contact section
+    // CONTACT SECTION: Verify contact section (DOM text is as-is)
     await page.locator("#contact").scrollIntoViewIfNeeded();
 
-    const contactTitle = page.getByText("LET'S WORK TOGETHER");
+    const contactTitle = page.getByText("Let's Work Together");
     await expect(contactTitle).toBeVisible();
 
     // NO HORIZONTAL OVERFLOW: Check for overflow
@@ -107,26 +107,26 @@ test.describe("Responsive Design", () => {
       .first();
     await expect(themeToggle).toBeVisible();
 
-    // HERO SECTION: Verify hero displays properly
-    const heroTitle = page.getByRole("heading").getByText("CHAIM LEV-ARI");
+    // HERO SECTION: Verify hero displays properly (DOM text is title case, displayed as uppercase via CSS)
+    const heroTitle = page.getByRole("heading").getByText("Chaim Lev-Ari");
     await expect(heroTitle).toBeVisible();
 
-    // WORK EXPERIENCE: Verify section
+    // WORK EXPERIENCE: Verify section (DOM text is title case, displayed as uppercase via CSS)
     await page.locator("#work").scrollIntoViewIfNeeded();
 
-    const workTitle = page.getByText("WORK EXPERIENCE");
+    const workTitle = page.getByText("Work Experience");
     await expect(workTitle).toBeVisible();
 
-    // PROJECTS: Verify section
+    // PROJECTS: Verify section (DOM text is title case, displayed as uppercase via CSS)
     await page.locator("#projects").scrollIntoViewIfNeeded();
 
-    const projectsTitle = page.getByText("SIDE PROJECTS");
+    const projectsTitle = page.getByText("Side Projects");
     await expect(projectsTitle).toBeVisible();
 
-    // CONTACT: Verify section
+    // CONTACT: Verify section (DOM text is as-is)
     await page.locator("#contact").scrollIntoViewIfNeeded();
 
-    const contactTitle = page.getByText("LET'S WORK TOGETHER");
+    const contactTitle = page.getByText("Let's Work Together");
     await expect(contactTitle).toBeVisible();
 
     // NO HORIZONTAL OVERFLOW
@@ -165,20 +165,20 @@ test.describe("Responsive Design", () => {
     await expect(navProjects).toBeVisible();
     await expect(navContact).toBeVisible();
 
-    // HERO SECTION: Full desktop hero layout
-    const heroTitle = page.getByRole("heading").getByText("CHAIM LEV-ARI");
+    // HERO SECTION: Full desktop hero layout (DOM text is title case, displayed as uppercase via CSS)
+    const heroTitle = page.getByRole("heading").getByText("Chaim Lev-Ari");
     await expect(heroTitle).toBeVisible();
 
-    // WORK EXPERIENCE: Full width cards with proper spacing
+    // WORK EXPERIENCE: Full width cards with proper spacing (DOM text is title case, displayed as uppercase via CSS)
     await page.locator("#work").scrollIntoViewIfNeeded();
 
-    const workTitle = page.getByText("WORK EXPERIENCE");
+    const workTitle = page.getByText("Work Experience");
     await expect(workTitle).toBeVisible();
 
-    // PROJECTS: Multi-column project grid
+    // PROJECTS: Multi-column project grid (DOM text is title case, displayed as uppercase via CSS)
     await page.locator("#projects").scrollIntoViewIfNeeded();
 
-    const projectsTitle = page.getByText("SIDE PROJECTS");
+    const projectsTitle = page.getByText("Side Projects");
     await expect(projectsTitle).toBeVisible();
 
     // BLOG SECTION: Currently hidden (commented out in index.astro)
@@ -188,10 +188,10 @@ test.describe("Responsive Design", () => {
     // const comingSoon = page.getByText('Coming Soon');
     // await expect(comingSoon).toBeVisible();
 
-    // CONTACT: Full desktop contact layout
+    // CONTACT: Full desktop contact layout (DOM text is as-is)
     await page.locator("#contact").scrollIntoViewIfNeeded();
 
-    const contactTitle = page.getByText("LET'S WORK TOGETHER");
+    const contactTitle = page.getByText("Let's Work Together");
     await expect(contactTitle).toBeVisible();
 
     // FOOTER: Verify footer layout

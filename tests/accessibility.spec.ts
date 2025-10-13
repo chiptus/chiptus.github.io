@@ -187,20 +187,20 @@ test.describe("Accessibility", () => {
     // Should have exactly 1 h1
     expect(h1Count).toBe(1);
 
-    // Verify h1 contains main heading
+    // Verify h1 contains main heading (DOM text is "Chaim Lev-Ari", displayed as "CHAIM LEV-ARI" via CSS uppercase)
     const h1Text = await h1Elements.first().textContent();
-    expect(h1Text?.toUpperCase()).toContain("CHAIM LEV-ARI");
+    expect(h1Text).toContain("Chaim Lev-Ari");
 
     // Check for h2 section headings
     const h2Elements = page.locator("h2");
     const h2Count = await h2Elements.count();
     expect(h2Count).toBeGreaterThan(0);
 
-    // Verify h2 headings are section titles
-    const workH2 = page.locator('h2:has-text("WORK EXPERIENCE")');
+    // Verify h2 headings are section titles (DOM text is title case, displayed as uppercase via CSS)
+    const workH2 = page.locator('h2:has-text("Work Experience")');
     await expect(workH2).toBeVisible();
 
-    const projectsH2 = page.locator('h2:has-text("SIDE PROJECTS")');
+    const projectsH2 = page.locator('h2:has-text("Side Projects")');
     await expect(projectsH2).toBeVisible();
 
     // Check for h3 (card titles)

@@ -12,10 +12,10 @@ test.describe("Hero Section", () => {
     const heroSection = page.locator("section#home");
     await expect(heroSection).toBeVisible();
 
-    // Verify name is displayed
-    await expect(page.locator("h1")).toContainText("CHAIM LEV-ARI");
+    // Verify name is displayed (DOM text is "Chaim Lev-Ari", displayed as "CHAIM LEV-ARI" via CSS uppercase)
+    await expect(page.locator("h1")).toContainText("Chaim Lev-Ari");
 
-    // Verify title is displayed
+    // Verify title is displayed (DOM text is "Full-Stack Developer", displayed as "FULL-STACK DEVELOPER" via CSS uppercase)
     await expect(
       page.getByText("Full-Stack Developer", { exact: true })
     ).toBeVisible();
@@ -221,10 +221,10 @@ test.describe("Hero Section", () => {
     const heroSection = page.locator("section#home");
     await expect(heroSection).toBeVisible();
 
-    // Verify name is readable on mobile
+    // Verify name is readable on mobile (DOM text is "Chaim Lev-Ari", displayed as "CHAIM LEV-ARI" via CSS uppercase)
     const nameHeading = page.locator("h1");
     await expect(nameHeading).toBeVisible();
-    await expect(nameHeading).toContainText("CHAIM LEV-ARI");
+    await expect(nameHeading).toContainText("Chaim Lev-Ari");
 
     // Verify responsive text sizing (should use smaller size on mobile)
     await expect(nameHeading).toHaveClass(/text-5xl/);

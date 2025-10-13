@@ -119,21 +119,21 @@ test.describe('Page Load and Initial State', () => {
     const hero = page.locator('main').first();
     await expect(hero).toBeVisible();
 
-    // Check for hero content
-    await expect(page.getByText('CHAIM LEV-ARI')).toBeVisible();
-    await expect(page.getByText('FULL-STACK DEVELOPER')).toBeVisible();
+    // Check for hero content (DOM text is title case, displayed as uppercase via CSS)
+    await expect(page.getByText('Chaim Lev-Ari')).toBeVisible();
+    await expect(page.getByText('Full-Stack Developer')).toBeVisible();
 
-    // 4. Verify presence of work experience section
-    await expect(page.getByText('WORK EXPERIENCE')).toBeVisible();
+    // 4. Verify presence of work experience section (DOM text is title case, displayed as uppercase via CSS)
+    await expect(page.getByText('Work Experience')).toBeVisible();
 
-    // 5. Verify presence of journey timeline section
-    await expect(page.getByText('JOURNEY')).toBeVisible();
+    // 5. Verify presence of journey timeline section (DOM text is title case, displayed as uppercase via CSS)
+    await expect(page.getByText('Journey')).toBeVisible();
 
-    // 6. Verify presence of now section
-    await expect(page.getByText('NOW', { exact: true })).toBeVisible();
+    // 6. Verify presence of now section (DOM text is title case, displayed as uppercase via CSS)
+    await expect(page.getByText('Now', { exact: true })).toBeVisible();
 
-    // 7. Verify presence of projects section
-    await expect(page.getByText('SIDE PROJECTS')).toBeVisible();
+    // 7. Verify presence of projects section (DOM text is title case, displayed as uppercase via CSS)
+    await expect(page.getByText('Side Projects')).toBeVisible();
 
     // 8. Blog section is currently hidden (commented out in index.astro)
     // await expect(page.getByText('BLOG')).toBeVisible();
