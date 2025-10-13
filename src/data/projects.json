@@ -1,33 +1,28 @@
 {
-  "featuredProject": {
-    "name": "Portainer",
-    "description": "Led frontend migration to React for a comprehensive container management platform used by thousands of developers worldwide.",
-    "tech": ["React", "TypeScript", "Docker", "Kubernetes"],
-    "link": "https://www.portainer.io",
-    "image": "/assets/portainer.jpg",
-    "caseStudy": {
-      "problem": "Legacy AngularJS codebase was becoming difficult to maintain and scale. The team needed to modernize the frontend while maintaining feature parity and zero downtime.",
-      "solution": "Architected and led a phased migration to React with TypeScript. Implemented a micro-frontend approach allowing gradual migration. Created shared component library and established modern dev practices.",
-      "impact": [
-        "Reduced bug reports by 40%",
-        "Improved page load times by 60%",
-        "Enabled 3x faster feature development",
-        "Used by 500K+ developers"
-      ]
-    }
-  },
   "projects": [
     {
-      "name": "Upline",
+      "name": "UpLine",
       "description": "A social festival companion app planned and implemented using Lovable and Claude Code.",
       "tech": ["React", "Vite", "Supabase"],
-      "image": "/assets/getupline.png"
+      "image": "/assets/getupline.png",
+      "link": "https://getupline.com"
     },
     {
-      "name": "myplace",
+      "name": "MyPlace",
       "description": "A WhatsApp bot to build landing pages through natural conversation.",
       "tech": ["ExpressJS", "Remix", "PostgreSQL", "Redis"],
-      "image": "/assets/myplace.png"
+      "image": "/assets/myplace.png",
+      "link": "https://my-place-2.webflow.io/",
+      "caseStudy": {
+        "problem": "Existing chatbot platforms couldn't provide the programmatic control needed for landing page generation. We required executing custom JavaScript functions, database operations, API calls, and handling dynamic data collection (variable number of images) - capabilities locked behind rigid flow builders.",
+        "solution": "Built a custom conversation framework from scratch with full programmatic control. The framework provides executable JavaScript steps, database persistence (PostgreSQL + Redis), dynamic state management, API integration, and flexible data collection. Users can navigate non-linearly while the bot executes complex business logic between interactions.",
+        "impact": [
+          "Full control over conversation logic and business rules",
+          "Enabled complex landing page generation from natural chat",
+          "Handled variable-length data collection (images, content blocks)",
+          "Created reusable framework for future conversational products"
+        ]
+      }
     }
   ]
 }

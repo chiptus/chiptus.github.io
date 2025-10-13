@@ -71,11 +71,11 @@ const interestsWithIcons = data.interests.map((interest) => ({
     <Navigation client:only="react" />
     <main>
       <Hero hero={data.hero} />
-      <WorkExperience workExperience={data.workExperience} />
       <JourneyTimeline milestones={milestonesWithIcons} />
+      <WorkExperience workExperience={data.workExperience} />
       <NowSection now={data.now} />
       <BeyondCode interests={interestsWithIcons} />
-      <Projects projects={data.projects} />
+      <Projects projects={data.projects} client:load />
       <!-- <BlogSection /> -->
       <Contact links={links} social={social} />
     </main>
