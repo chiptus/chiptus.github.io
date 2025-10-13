@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Offline package manager</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Offline package manager</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+A few weeks ago, I started a new blog called “The Digital Nomad”, it’s telling about my life as a programmer traveling India. About the…
+</section>
+<section data-field="body" class="e-content">
+<section name="946e" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="58a4" id="58a4" class="graf graf--h3 graf--leading graf--title">Offline package manager</h3><figure name="fc0c" id="fc0c" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*b3prqHvMZ5WETdIN6auhRA.jpeg" data-width="3286" data-height="2432" src="https://cdn-images-1.medium.com/max/800/1*b3prqHvMZ5WETdIN6auhRA.jpeg"><figcaption class="imageCaption">View from my current position — Jaisalemer</figcaption></figure><p name="e20a" id="e20a" class="graf graf--p graf--hasDropCapModel graf--hasDropCap graf-after--figure"><span class="graf-dropCap">A</span> few weeks ago, I started a new blog called “The Digital Nomad”, it’s telling about my life as a programmer traveling India. About the places I see and about my programming problems and projects I do.</p><p name="4e54" id="4e54" class="graf graf--p graf-after--p">This is my first technical post on the blog. I was encouraged by <a href="https://medium.com/u/b0f009f22115" data-href="https://medium.com/u/b0f009f22115" data-anchor-type="2" data-user-id="b0f009f22115" data-action-value="b0f009f22115" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">Chance Taken</a> to post on medium and I chose it to be my first post here.</p><p name="0724" id="0724" class="graf graf--p graf-after--p">A problem I get a lot when traveling is the use of NPM for downloading packages to build my projects. Now, for new packages I never used I can understand that there’s a problem because I don’t expect the entire NPM repository to be on my computer.However I often use bootstrap for different projects and I don’t want to wait for it to download each time. What’s more, I can’t download it without an internet connection and thus I’m missing work time because I miss bootstrap.</p><p name="6a60" id="6a60" class="graf graf--p graf-after--p">This is what I tried:</p><h3 name="c39e" id="c39e" class="graf graf--h3 graf-after--p">1. Hacking a bit:</h3><p name="6c03" id="6c03" class="graf graf--p graf-after--h3">Go to a repository that already has bootstrap and copy the folder from node_modules folder. You need to remember also to copy the line stating the dependence from that repository package.json file.</p><p name="1cf8" id="1cf8" class="graf graf--p graf-after--p">It works really good when I try to do it with simple packages like bootstrap. But what happens if I want to do it for React or Webpack? They rely on other packages, and I need to know which ones. These can be 100s of packages, it’s a lot of work to start a new project.</p><p name="1edf" id="1edf" class="graf graf--p graf-after--p">I can just have a base repository that I duplicate every time, but what’s the fun of this?</p><h3 name="f92c" id="f92c" class="graf graf--h3 graf-after--p">2. Using “NPM –cache-min 99999999 install &lt;package&gt;”</h3><p name="b839" id="b839" class="graf graf--p graf-after--h3">This would force NPM to load from the cache. A few problems:</p><p name="cfa5" id="cfa5" class="graf graf--p graf-after--p">1. NPM will still connect to the registry if there’s a package with dependencies that are not in the cache.</p><p name="9cd6" id="9cd6" class="graf graf--p graf-after--p">2. It will fail in case of downloading a package which has dependencies on a newer version than one in the cache.</p><h3 name="8028" id="8028" class="graf graf--h3 graf-after--p">3. Local-NPM</h3><p name="b856" id="b856" class="graf graf--p graf-after--h3">I found a program called local-NPM (<a href="https://github.com/nolanlawson/local-npm" data-href="https://github.com/nolanlawson/local-npm" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://github.com/nolanlawson/local-NPM</a>), you’re more than invited to use it on your projects. It’s unmaintained, but it seems like it’s working.</p><p name="7580" id="7580" class="graf graf--p graf-after--p">Its use includes running a local proxy server, and NPM downloads the packages from it instead of downloading it from the NPM registry. If the package you’re looking for is not available in the proxy it will download it from the NPM registry and save it there.</p><p name="1075" id="1075" class="graf graf--p graf-after--p">You can use the instructions on the GitHub page or you can read this blogpost <a href="https://addyosmani.com/blog/using-npm-offline/" data-href="https://addyosmani.com/blog/using-npm-offline/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://addyosmani.com/blog/using-NPM-offline/</a> by a guy named Addy Osmani. It’s his first post I read, but many thanks to him for writing of this solution. Note what it says on GitHub regarding to the use of a temporary .npmrc file.</p><h3 name="e989" id="e989" class="graf graf--h3 graf-after--p">4. Yarn and big-bertha</h3><figure name="0b3b" id="0b3b" class="graf graf--figure graf--iframe graf-after--h3"><iframe src="https://giphy.com/embed/GDq8duR7hOzYc/twitter/iframe" width="435" height="299" frameborder="0" scrolling="no"></iframe><figcaption class="imageCaption">Me trying to use yarn</figcaption></figure><p name="57d1" id="57d1" class="graf graf--p graf-after--figure">The same day I started writing this post, a guy in my FCC cohort group (FCC Rhinos! :)) told us about a new package manager developed by Facebook. It’s called Yarn and it should fix some problems they had with NPM. It fixes some security issues, and should also be faster. It does work with the NPM registry, not using a new one, so any package installable with NPM is also installable with Yarn. It also supports offline installation. I still didn’t manage to use it very well. Fromwhat I understand, my internet connection is too slow and thus Yarn hangs up in the middle of the installation.</p><p name="ab74" id="ab74" class="graf graf--p graf-after--p">An NPM package “big-bertha” (<a href="https://github.com/joshmatz/big-bertha" data-href="https://github.com/joshmatz/big-bertha" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://github.com/joshmatz/big-bertha</a>) comes along just to add commonly used packages to your cache so you can install them offline. You just run “yarn add big-bertha &amp;&amp; yarn remove big-bertha” in your cmd and you’re good to go. For some reason even though I did run it before successfully (with an internet connection), I can’t install it again offline. I will need to check it and I’ll update you.</p><p name="6146" id="6146" class="graf graf--p graf-after--p">It seems like the same solution as npm –cache-min, and it’s probably suffering from the same problems. I’ll need to dig into these solutions more.</p><p name="7f0f" id="7f0f" class="graf graf--p graf-after--p">Ok, so I didn’t find a very good solution, I will continue to look for one and update you when I find or if one of the former solutions does work eventually.</p><p name="4647" id="4647" class="graf graf--p graf-after--p">Do you know of anything else I can do? Please tell me about it in the comments or on my blog.</p><p name="43cc" id="43cc" class="graf graf--p graf-after--p graf--trailing"><em class="markup--em markup--p-em">Come and read: </em><a href="http://tdigitalnomad.blogspot.com" data-href="http://tdigitalnomad.blogspot.com" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><em class="markup--em markup--p-em">tdigitalnomad.blogspot.com</em></a></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@chiptus" class="p-author h-card">Chaim Lev-Ari</a> on <a href="https://medium.com/p/ae35c183f610"><time class="dt-published" datetime="2016-10-28T05:22:36.168Z">October 28, 2016</time></a>.</p><p><a href="https://medium.com/@chiptus/offline-package-manager-ae35c183f610" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 13, 2025.</p></footer></article></body></html>

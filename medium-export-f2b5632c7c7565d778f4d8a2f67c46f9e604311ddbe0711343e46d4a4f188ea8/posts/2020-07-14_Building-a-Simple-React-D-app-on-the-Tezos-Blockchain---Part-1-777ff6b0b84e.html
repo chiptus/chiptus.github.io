@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Building a Simple React D-app on the Tezos Blockchain — Part 1</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Building a Simple React D-app on the Tezos Blockchain — Part 1</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+This is part 1 of a series of posts about how to connect a react webapp to the Tezos blockchain. For other posts see:
+</section>
+<section data-field="body" class="e-content">
+<section name="aba1" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7ef7" id="7ef7" class="graf graf--h3 graf--leading graf--title">Building a Simple React Dapp on the Tezos Blockchain — Part 1</h3><figure name="fced" id="fced" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*xf7yIKoZcfFWgW-4R65LBA.jpeg" data-width="4500" data-height="4500" src="https://cdn-images-1.medium.com/max/800/1*xf7yIKoZcfFWgW-4R65LBA.jpeg"></figure><h4 name="b4ac" id="b4ac" class="graf graf--h4 graf-after--figure">This is part 1 of a series of posts about how to connect a react webapp to the Tezos blockchain. For other posts see:</h4><ol class="postList"><li name="7ab2" id="7ab2" class="graf graf--li graf-after--h4"><em class="markup--em markup--li-em">Part 1 — Bootstrapping</em></li><li name="0b57" id="0b57" class="graf graf--li graf-after--li"><a href="https://medium.com/tezos-israel/building-a-simple-react-dapp-on-the-tezos-blockchain-part-2-82ffb3114d5e" data-href="https://medium.com/tezos-israel/building-a-simple-react-dapp-on-the-tezos-blockchain-part-2-82ffb3114d5e" class="markup--anchor markup--li-anchor" target="_blank"><em class="markup--em markup--li-em">Part 2 — Connect to a wallet</em></a></li><li name="51b5" id="51b5" class="graf graf--li graf-after--li"><a href="https://medium.com/tezos-israel/building-a-simple-react-dapp-on-the-tezos-blockchain-part-3-47af30a550d4" data-href="https://medium.com/tezos-israel/building-a-simple-react-dapp-on-the-tezos-blockchain-part-3-47af30a550d4" class="markup--anchor markup--li-anchor" target="_blank"><em class="markup--em markup--li-em">Part 3 — Connect and interact with a contract</em></a></li></ol><p name="d286" id="d286" class="graf graf--p graf-after--li">Note: this series is based on <a href="https://medium.com/u/475fd478604e" data-href="https://medium.com/u/475fd478604e" data-anchor-type="2" data-user-id="475fd478604e" data-action-value="475fd478604e" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">Claude Barde</a>’s <a href="https://medium.com/coinmonks/build-a-tezos-dapp-using-taquito-and-the-beacon-sdk-692d7dc822aa" data-href="https://medium.com/coinmonks/build-a-tezos-dapp-using-taquito-and-the-beacon-sdk-692d7dc822aa" class="markup--anchor markup--p-anchor" target="_blank"><strong class="markup--strong markup--p-strong">post</strong></a> and is using truffle base example for the Counter contract. If you just want to learn the basics, I suggest following <a href="https://medium.com/u/475fd478604e" data-href="https://medium.com/u/475fd478604e" data-anchor-type="2" data-user-id="475fd478604e" data-action-value="475fd478604e" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">Claude Barde</a>’s post. I’m currently creating a similar app, with react and truffle.</p><p name="9b6d" id="9b6d" class="graf graf--p graf-after--p">Complete code for this series is <a href="https://gitlab.com/tezosisrael/demo-tezos-react" data-href="https://gitlab.com/tezosisrael/demo-tezos-react" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">here</em></strong></a><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">.</em></strong></p><h3 name="e2fd" id="e2fd" class="graf graf--h3 graf-after--p">Bootstrap:</h3><figure name="c46c" id="c46c" class="graf graf--figure graf--iframe graf-after--h3"><script src="https://gist.github.com/f6544bc947c456ac00275cd8e757eed1.js"></script></figure><figure name="6d2d" id="6d2d" class="graf graf--figure graf--iframe graf-after--figure"><script src="https://gist.github.com/d242a477a825d41b4c7dee52130178ef.js"></script></figure><h3 name="d25f" id="d25f" class="graf graf--h3 graf-after--figure">What?!</h3><ul class="postList"><li name="8f64" id="8f64" class="graf graf--li graf-after--h3"><code class="markup--code markup--li-code">yarn create react-app web</code> bootstraps a react app with all the defaults.</li><li name="999b" id="999b" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">yarn add @taquito/beacon-wallet @taquito/taquito</code> - install taquito dependencies</li><li name="cf14" id="cf14" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">yarn global add truffle@tezos</code> installs truffle, <em class="markup--em markup--li-em">(you can skip this step if it&#39;s already installed)</em>. Notes:</li></ul><ol class="postList"><li name="2e0b" id="2e0b" class="graf graf--li graf-after--li">You need to check that you have the Tezos version of truffle, if you don’t, you’ll need to uninstall and install this version.</li><li name="6967" id="6967" class="graf graf--li graf-after--li">I just reinstalled my computer and I had a few problems. First, truffle installation includes compiling c++ code, so you’re expected to have it installed. Second, although it says node 12 is supported it failed on my machine so I used node v10.</li></ol><p name="0864" id="0864" class="graf graf--p graf-after--li">Let’s also install the <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">beacon chrome extension</em></strong></p><h3 name="d5f2" id="d5f2" class="graf graf--h3 graf-after--p">Configure Contract Deployment.</h3><p name="84fb" id="84fb" class="graf graf--p graf-after--h3">As <a href="https://medium.com/u/475fd478604e" data-href="https://medium.com/u/475fd478604e" data-anchor-type="2" data-user-id="475fd478604e" data-action-value="475fd478604e" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">Claude Barde</a>’s tutorial uses carthegent we will use the same for deploying our contracts. Open tezos-counter-app folder using your favorite editor.</p><p name="3736" id="3736" class="graf graf--p graf-after--p">Check <a href="https://www.trufflesuite.com/docs/tezos/truffle/quickstart" data-href="https://www.trufflesuite.com/docs/tezos/truffle/quickstart" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">truffle</strong></a> for more explanation about the following commands.</p><p name="34be" id="34be" class="graf graf--p graf-after--p">Using <a href="https://faucet.tzalpha.net/" data-href="https://faucet.tzalpha.net/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">https://faucet.tzalpha.net/</strong></a> generate a faucet account and save it into the contracts folder as <code class="markup--code markup--p-code">faucet.json</code>.</p><p name="154f" id="154f" class="graf graf--p graf-after--p">replace <code class="markup--code markup--p-code">truffle-config.js</code> content with the following:</p><figure name="566e" id="566e" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/chiptus/cce0c746ea13dc4ec8a58798c319b13c.js"></script></figure><p name="5505" id="5505" class="graf graf--p graf-after--figure">run <code class="markup--code markup--p-code">truffle migrate</code> inside the contracts folder.</p><p name="0596" id="0596" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">Important: Make sure to save truffle-config.js or it will fail.</em></strong></p><p name="2cdc" id="2cdc" class="graf graf--p graf-after--p">This command deploys the contracts to the blockchain (carthagenet) and sets their initial storage (check the contracts and migrations folders to see some code). When it succeeds you can see the contract’s addresses in your terminal and the build folder (JSON file for each contract). Copy the counter contract account and go to <a href="https://better-call.dev/" data-href="https://better-call.dev/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">BCD</strong></a><strong class="markup--strong markup--p-strong"> </strong>to see the contract. Whenever we do any operation on this contract, you can see it here.</p><p name="451d" id="451d" class="graf graf--p graf-after--p">You can actually use BCD app to interact with the contract already.</p><p name="45c4" id="45c4" class="graf graf--p graf-after--p">run <code class="markup--code markup--p-code">truffle test</code> to see the tests running and then check BCD to see the tests interactions with the contract.</p><p name="7cbd" id="7cbd" class="graf graf--p graf-after--p">Now, since we’re not developing a contract here, the next part is the main one, developing the app.</p><h3 name="6b27" id="6b27" class="graf graf--h3 graf-after--p">Let’s Start With Client-side Development</h3><p name="0a66" id="0a66" class="graf graf--p graf-after--h3">In your terminal go into <code class="markup--code markup--p-code">web</code> folder and run <code class="markup--code markup--p-code">yarn start</code>. This will start the react development server, so any change we do in the app code will reflect almost immediately in the browser. when <code class="markup--code markup--p-code">yarn start</code> finishes the initial build you&#39;ll be presented with a URL, probably <code class="markup--code markup--p-code">localhost:3000</code>. Open it in your browser and let&#39;s start.</p><p name="e1df" id="e1df" class="graf graf--p graf-after--p">Open <code class="markup--code markup--p-code">App.js</code> and replace its content with</p><figure name="a5f2" id="a5f2" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/5f237344bb4097ce4f0aca86315da711.js"></script></figure><p name="6099" id="6099" class="graf graf--p graf-after--figure">You can see in the browser that the initial app was replaced with an empty file</p><p name="e9e4" id="e9e4" class="graf graf--p graf-after--p">Let’s add the main ingredients for the app (it won’t be beautiful, sorry)</p><p name="1a51" id="1a51" class="graf graf--p graf-after--p">replace <code class="markup--code markup--p-code">&lt;div className=&quot;App&quot;&gt;&lt;/div&gt;</code> with</p><figure name="7435" id="7435" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/04cb1fd5d1555fccd76be399baf55015.js"></script></figure><p name="a1f9" id="a1f9" class="graf graf--p graf-after--figure">This post was relatively short, we just bootstrapped our app. In the next post, we will connect the app to a wallet and show its balance.</p><p name="5772" id="5772" class="graf graf--p graf-after--p">For more stuff about tezos, go to our <a href="http://tezos.co.il/blog" data-href="http://tezos.co.il/blog" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">blog</em></strong></a></p><p name="d903" id="d903" class="graf graf--p graf-after--p">— — — — — — — — — — — — — — — — -</p><h3 name="45b8" id="45b8" class="graf graf--h3 graf-after--p"><strong class="markup--strong markup--h3-strong">Who am I? (About the Author)</strong></h3><p name="6df6" id="6df6" class="graf graf--p graf-after--h3 graf--trailing">My name is Chaim Lev-Ari. I’m a web developer and in the last 2 years, I got into Tezos. First, as a baker when I co-founded <a href="https://tzbaker.co.il/" data-href="https://tzbaker.co.il/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">BakeryIL</em></strong></a>, and these days I’m starting with smart contract development. These posts are describing my journey in the ecosystem.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@chiptus" class="p-author h-card">Chaim Lev-Ari</a> on <a href="https://medium.com/p/777ff6b0b84e"><time class="dt-published" datetime="2020-07-14T20:59:22.021Z">July 14, 2020</time></a>.</p><p><a href="https://medium.com/@chiptus/building-a-simple-react-d-app-on-the-tezos-blockchain-part-1-777ff6b0b84e" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 13, 2025.</p></footer></article></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title># Building a simple react dapp on the tezos blockchain — Part 1</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name"># Building a simple react dapp on the tezos blockchain — Part 1</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+This is part 1 of a series of posts about how to connect a react webapp to the tezos blockchain. For other posts see:
+</section>
+<section data-field="body" class="e-content">
+<section name="c4a9" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="8eed" id="8eed" class="graf graf--h3 graf--empty graf--leading graf--title"><br></h3><p name="4166" id="4166" class="graf graf--p graf-after--h3"># Building a simple react dapp on the tezos blockchain — Part 1</p><p name="adb3" id="adb3" class="graf graf--p graf-after--p">This is part 1 of a series of posts about how to connect a react webapp to the tezos blockchain. For other posts see:</p><p name="1366" id="1366" class="graf graf--p graf-after--p">1. Part 1 — Bootstrapping</p><p name="c549" id="c549" class="graf graf--p graf-after--p">2. Part 2 — Connect to a wallet</p><p name="4f57" id="4f57" class="graf graf--p graf-after--p">3. Part 3 — Connect and interact with a contract</p><p name="5090" id="5090" class="graf graf--p graf-after--p">Note: this series is based on @claudebarde’s [post](https://medium.com/coinmonks/build-a-tezos-dapp-using-taquito-and-the-beacon-sdk-692d7dc822aa) and is using truffle base example for the Counter contract. If you just want to learn the basics, I suggest following @claudebarde’s post. I’m creating almost the same app, with react and truffle.</p><p name="55e6" id="55e6" class="graf graf--p graf-after--p">Complete code for this series is on [my repo](https://gitlab.com/chiptus/demo-tezos-react)</p><p name="bc86" id="bc86" class="graf graf--p graf-after--p">## Who am I?</p><p name="4f6e" id="4f6e" class="graf graf--p graf-after--p">My name is Chaim Lev-Ari, I’m a web developer. In the last 2 years, I started getting into Tezos. First, as a baker when I started BakeryIL, and these days I’m starting with smart contract development. These posts are describing my journey into the ecosystem.</p><p name="990b" id="990b" class="graf graf--p graf-after--p">## bootstrap:</p><p name="9c26" id="9c26" class="graf graf--p graf-after--p">- create a folder for the project</p><p name="9691" id="9691" class="graf graf--p graf-after--p">```sh</p><p name="1db1" id="1db1" class="graf graf--p graf-after--p">mkdir tezos-counter-app</p><p name="5345" id="5345" class="graf graf--p graf-after--p">cd tezos-counter-app</p><p name="61da" id="61da" class="graf graf--p graf-after--p">```</p><p name="c13e" id="c13e" class="graf graf--p graf-after--p">- run the following:</p><p name="ffcb" id="ffcb" class="graf graf--p graf-after--p">```sh</p><p name="6020" id="6020" class="graf graf--p graf-after--p">yarn create react-app web <em class="markup--em markup--p-em"># this will create the folder for your app</em></p><p name="532b" id="532b" class="graf graf--p graf-after--p">cd web</p><p name="4451" id="4451" class="graf graf--p graf-after--p">yarn add @taquito/beacon-wallet @taquito/taquito</p><p name="a1bc" id="a1bc" class="graf graf--p graf-after--p">cd ../</p><p name="6acc" id="6acc" class="graf graf--p graf-after--p">yarn global add truffle@tezos</p><p name="cbfa" id="cbfa" class="graf graf--p graf-after--p">mkdir contracts</p><p name="4a19" id="4a19" class="graf graf--p graf-after--p">cd contracts</p><p name="962d" id="962d" class="graf graf--p graf-after--p">truffle unbox tezos-example</p><p name="286f" id="286f" class="graf graf--p graf-after--p">```</p><p name="df6c" id="df6c" class="graf graf--p graf-after--p">## what?</p><p name="4224" id="4224" class="graf graf--p graf-after--p">- `yarn create react-app web` bootstraps a react app with all the defaults.</p><p name="879a" id="879a" class="graf graf--p graf-after--p">- `yarn add @taquito/beacon-wallet @taquito/taquito` — install taquito dependencies</p><p name="0b87" id="0b87" class="graf graf--p graf-after--p">- `yarn global add truffle@tezos` installs truffle, you can skip this step if it’s already installed.</p><p name="5050" id="5050" class="graf graf--p graf-after--p">Notes:</p><p name="97ac" id="97ac" class="graf graf--p graf-after--p">1. you need to check that you have the tezos version of truffle, if you don’t, you’ll need to uninstall and install this version.</p><p name="2479" id="2479" class="graf graf--p graf-after--p">2. I just reinstalled my computer and I had a few problems. First, truffle installation includes compiling c++ code, so you’re expected to have it installed. Second, although it says node 12 is supported it failed on my machine so I used node v10.</p><p name="5bcc" id="5bcc" class="graf graf--p graf-after--p">- `truffle unbox tezos-example`</p><p name="e2a5" id="e2a5" class="graf graf--p graf-after--p">This bootstraps the tezos-example of truffle. This includes simple contracts, migrations, and tests. We will use the Counter contract for this tutorial.</p><p name="2d88" id="2d88" class="graf graf--p graf-after--p">Let’s also install the [beacon chrome extension](https://chrome.google.com/webstore/detail/beacon-extension/gpfndedineagiepkpinficbcbbgjoenn)</p><p name="e128" id="e128" class="graf graf--p graf-after--p">## configure contract deployment.</p><p name="52c0" id="52c0" class="graf graf--p graf-after--p">As @claudebarde’s tutorial uses carthegent we will use the same for deploying our contracts. Open tezos-counter-app folder using your favorite editor.</p><p name="fe61" id="fe61" class="graf graf--p graf-after--p">Check [truffle](https://www.trufflesuite.com/docs/tezos/truffle/quickstart) for more explanation about the following commands.</p><p name="2492" id="2492" class="graf graf--p graf-after--p">Using <a href="https://faucet.tzalpha.net/" data-href="https://faucet.tzalpha.net/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://faucet.tzalpha.net/</a> generate a faucet account and save it into the contracts folder as `faucet.json`.</p><p name="c83d" id="c83d" class="graf graf--p graf-after--p">replace `truffle-config.js` content with the following:</p><p name="5931" id="5931" class="graf graf--p graf-after--p">```js</p><p name="b32a" id="b32a" class="graf graf--p graf-after--p">const { mnemonic, secret, password, email } = require(‘./faucet.json’);</p><p name="5210" id="5210" class="graf graf--p graf-after--p">module.exports = {</p><p name="cf32" id="cf32" class="graf graf--p graf-after--p">networks: {</p><p name="92b7" id="92b7" class="graf graf--p graf-after--p">development: {</p><p name="4a3a" id="4a3a" class="graf graf--p graf-after--p">host: ‘https://carthagenet.smartpy.io&#39;,</p><p name="ca44" id="ca44" class="graf graf--p graf-after--p">port: 443,</p><p name="b533" id="b533" class="graf graf--p graf-after--p">network_id: ‘*’,</p><p name="df99" id="df99" class="graf graf--p graf-after--p">secret,</p><p name="65e3" id="65e3" class="graf graf--p graf-after--p">mnemonic,</p><p name="3256" id="3256" class="graf graf--p graf-after--p">password,</p><p name="2ea6" id="2ea6" class="graf graf--p graf-after--p">email,</p><p name="aa9d" id="aa9d" class="graf graf--p graf-after--p">type: ‘tezos’,</p><p name="3065" id="3065" class="graf graf--p graf-after--p">},</p><p name="6fb5" id="6fb5" class="graf graf--p graf-after--p">},</p><p name="6888" id="6888" class="graf graf--p graf-after--p">};</p><p name="755e" id="755e" class="graf graf--p graf-after--p">```</p><p name="9500" id="9500" class="graf graf--p graf-after--p">run `truffle migrate` inside the contracts folder. I forgot to save truffle-config.js and it failed, so be sure that you’ve saved the file.</p><p name="d335" id="d335" class="graf graf--p graf-after--p">This command deploys the contracts to the blockchain (carthagenet) and sets their initial storage (check the contracts and migrations folders to see some code). When it succeeds you can see the contract’s addresses in your terminal and the build folder (JSON file for each contract). Copy the counter contract account and go to [BCD](https://better-call.dev/) to see the contract. Whenever we do any operation on this contract, you can see it here.</p><p name="1360" id="1360" class="graf graf--p graf-after--p">You can actually use BCD app to interact with the contract already.</p><p name="168e" id="168e" class="graf graf--p graf-after--p">run `truffle test` to see the tests running and then check BCD to see the tests interactions with the contract.</p><p name="c184" id="c184" class="graf graf--p graf-after--p">OK, since we’re not developing a contract here (that’s a part I’m still learning), the next part is the main one, developing the app.</p><p name="a300" id="a300" class="graf graf--p graf-after--p">## Let’s start with client-side development</p><p name="3572" id="3572" class="graf graf--p graf-after--p">In your terminal go into `web` folder and run `yarn start`. This will start the react development server, so any change we do in the app code will reflect almost immediately in the browser. when `yarn start` finishes the initial build you’ll be presented with a URL, probably `localhost:3000`. Open it in your browser and let’s start.</p><p name="d361" id="d361" class="graf graf--p graf-after--p">Open `App.js` and replace its content with</p><p name="5d71" id="5d71" class="graf graf--p graf-after--p">```jsx</p><p name="1965" id="1965" class="graf graf--p graf-after--p">import React from ‘react’;</p><p name="b0b6" id="b0b6" class="graf graf--p graf-after--p">function App() {</p><p name="7d9a" id="7d9a" class="graf graf--p graf-after--p">return &lt;div className=”App”&gt;&lt;/div&gt;;</p><p name="707c" id="707c" class="graf graf--p graf-after--p">}</p><p name="c09b" id="c09b" class="graf graf--p graf-after--p">export default App;</p><p name="c1b2" id="c1b2" class="graf graf--p graf-after--p">```</p><p name="dcda" id="dcda" class="graf graf--p graf-after--p">You can see in the browser that the initial app was replaced with an empty file</p><p name="c794" id="c794" class="graf graf--p graf-after--p">Let’s add the main ingredients for the app (it won’t be beautiful, sorry)</p><p name="aca0" id="aca0" class="graf graf--p graf-after--p">replace `&lt;div className=”App”&gt;&lt;/div&gt;`</p><p name="f2c3" id="f2c3" class="graf graf--p graf-after--p">with</p><p name="3dd2" id="3dd2" class="graf graf--p graf-after--p">```jsx</p><p name="8c1b" id="8c1b" class="graf graf--p graf-after--p">&lt;div className=”app”&gt;</p><p name="2de9" id="2de9" class="graf graf--p graf-after--p">&lt;div&gt;Counter: &lt;/div&gt;</p><p name="6539" id="6539" class="graf graf--p graf-after--p">&lt;div&gt;Address: &lt;/div&gt;</p><p name="e901" id="e901" class="graf graf--p graf-after--p">&lt;div&gt;Balance: &lt;/div&gt;</p><p name="a097" id="a097" class="graf graf--p graf-after--p">&lt;div&gt;Wallet Error: &lt;/div&gt;</p><p name="fc1e" id="fc1e" class="graf graf--p graf-after--p">&lt;div&gt;Balance Error: &lt;/div&gt;</p><p name="7948" id="7948" class="graf graf--p graf-after--p">&lt;div&gt;Contract Error: &lt;/div&gt;</p><p name="4aa4" id="4aa4" class="graf graf--p graf-after--p">&lt;div&gt;Operation Error: &lt;/div&gt;</p><p name="28c4" id="28c4" class="graf graf--p graf-after--p">&lt;button&gt;Increase&lt;/button&gt;</p><p name="df3b" id="df3b" class="graf graf--p graf-after--p">&lt;button&gt;Decrease&lt;/button&gt;</p><p name="5528" id="5528" class="graf graf--p graf-after--p">&lt;button&gt;Connect&lt;/button&gt;</p><p name="4988" id="4988" class="graf graf--p graf-after--p">&lt;/div&gt;</p><p name="f1b0" id="f1b0" class="graf graf--p graf-after--p">```</p><p name="ec9d" id="ec9d" class="graf graf--p graf-after--p">This post was relatively short, we just bootstrapped our app. In the next post, we will connect the app to a wallet and show its balance.</p><p name="1138" id="1138" class="graf graf--p graf-after--p">For more stuff about tezos, go to our [blog](tezos.co.il)</p><p name="2687" id="2687" class="graf graf--p graf--empty graf-after--p graf--trailing"><br></p></div></div></section>
+</section>
+<footer><p><a href="https://medium.com/p/918d156b226d">View original.</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 13, 2025.</p></footer></article></body></html>
