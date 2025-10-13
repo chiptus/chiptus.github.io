@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm exec playwright test:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
