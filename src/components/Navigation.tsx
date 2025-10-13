@@ -30,41 +30,56 @@ export const Navigation = () => {
             CL
           </a>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#about"
-              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
-            >
-              Journey
-            </a>
-            <a
-              href="#now"
-              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
-            >
-              Now
-            </a>
-            <a
-              href="#projects"
-              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
-            >
-              Projects
-            </a>
-            {/* <a
-              href="#blog"
-              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
-            >
-              Blog
-            </a> */}
-            <a
-              href="#contact"
-              className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
-            >
-              Contact
-            </a>
+          <div
+            className="hidden md:flex items-center space-x-8"
+            aria-label="Desktop navigation"
+          >
+            <ul className="flex items-center space-x-8 list-none m-0 p-0">
+              <li>
+                <a
+                  href="#about"
+                  className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+                >
+                  Journey
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#now"
+                  className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+                >
+                  Now
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+                >
+                  Projects
+                </a>
+              </li>
+              {/* <li>
+                <a
+                  href="#blog"
+                  className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+                >
+                  Blog
+                </a>
+              </li> */}
+              <li>
+                <a
+                  href="#contact"
+                  className="font-mono text-sm uppercase tracking-wide text-foreground hover:text-primary transition-colors"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
             <ThemeToggle />
           </div>
 
-          <div className="md:hidden">
+          <div className="md:hidden" aria-label="Mobile navigation">
             <ThemeToggle />
           </div>
         </div>
