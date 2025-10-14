@@ -37,7 +37,7 @@ export const ClientOnlyThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full"
+      className="rounded-full h-11 w-11"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (

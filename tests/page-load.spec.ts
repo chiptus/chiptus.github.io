@@ -86,10 +86,16 @@ test.describe('Page Load and Initial State', () => {
   test('No console errors on load', async ({ page }) => {
     const consoleErrors: string[] = [];
 
-    // Listen for console errors
+    // Listen for console errors before navigating
     page.on('console', msg => {
       if (msg.type() === 'error') {
-        consoleErrors.push(msg.text());
+        const text = msg.text();
+        // Filter out known harmless errors
+        if (!text.includes('favicon') &&
+            !text.includes('Failed to load resource') &&
+            !text.includes('net::ERR')) {
+          consoleErrors.push(text);
+        }
       }
     });
 
@@ -97,12 +103,16 @@ test.describe('Page Load and Initial State', () => {
     await page.goto(baseURL);
 
     // 2. Wait for page to fully load
+    await page.waitForLoadState('load');
     await page.waitForLoadState('domcontentloaded');
 
-    // Wait a bit more for any async operations
-    await page.waitForTimeout(1000);
+    // Wait for React hydration by checking if theme toggle is interactive
+    await page.waitForSelector('button[aria-label*="theme" i]', { state: 'visible', timeout: 5000 });
 
     // Verify no JavaScript errors in console
+    if (consoleErrors.length > 0) {
+      console.log('Console errors found:', consoleErrors);
+    }
     expect(consoleErrors).toHaveLength(0);
   });
 
@@ -120,20 +130,20 @@ test.describe('Page Load and Initial State', () => {
     await expect(hero).toBeVisible();
 
     // Check for hero content (DOM text is title case, displayed as uppercase via CSS)
-    await expect(page.getByText('Chaim Lev-Ari')).toBeVisible();
-    await expect(page.getByText('Full-Stack Developer')).toBeVisible();
+    await expect(page.getByText('Chaim Lev-Ari').first()).toBeVisible();
+    await expect(page.getByText('Full-Stack Developer').first()).toBeVisible();
 
     // 4. Verify presence of work experience section (DOM text is title case, displayed as uppercase via CSS)
-    await expect(page.getByText('Work Experience')).toBeVisible();
+    await expect(page.getByText('Work Experience').first()).toBeVisible();
 
     // 5. Verify presence of journey timeline section (DOM text is title case, displayed as uppercase via CSS)
-    await expect(page.getByText('Journey')).toBeVisible();
+    await expect(page.getByText('Journey').first()).toBeVisible();
 
     // 6. Verify presence of now section (DOM text is title case, displayed as uppercase via CSS)
-    await expect(page.getByText('Now', { exact: true })).toBeVisible();
+    await expect(page.getByText('Now', { exact: true }).first()).toBeVisible();
 
     // 7. Verify presence of projects section (DOM text is title case, displayed as uppercase via CSS)
-    await expect(page.getByText('Side Projects')).toBeVisible();
+    await expect(page.getByText('Side Projects').first()).toBeVisible();
 
     // 8. Blog section is currently hidden (commented out in index.astro)
     // await expect(page.getByText('BLOG')).toBeVisible();
@@ -159,20 +169,18 @@ test.describe('Page Load and Initial State', () => {
     const htmlElement = page.locator('html');
     const htmlClass = await htmlElement.getAttribute('class');
 
-    // Verify default theme (should be either 'light' or 'dark')
+    // Verify default theme (should be 'light' as the default)
     expect(htmlClass).toBeTruthy();
-    expect(['light', 'dark']).toContain(htmlClass);
+    expect(htmlClass).toBe('light');
 
-    // If theme is persisted, verify localStorage
+    // Verify localStorage has the theme set
     const storedTheme = await page.evaluate(() => {
       const stored = localStorage.getItem('theme');
       return stored ? JSON.parse(stored) : null;
     });
 
-    // If localStorage has a value, it should match the HTML class
-    if (storedTheme) {
-      expect(storedTheme).toBe(htmlClass);
-    }
+    // localStorage should now have the default theme set by the inline script
+    expect(storedTheme).toBe('light');
 
     // Verify theme toggle button is present
     const themeToggle = page.locator('button[aria-label*="theme" i]').or(

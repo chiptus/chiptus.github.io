@@ -39,6 +39,27 @@ const structuredData = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Theme initialization script (runs before page render to prevent flash) -->
+    <script is:inline>
+      (function() {
+        const getTheme = () => {
+          const stored = localStorage.getItem('theme');
+          if (stored) {
+            try {
+              return JSON.parse(stored);
+            } catch {
+              return 'light';
+            }
+          }
+          return 'light';
+        };
+
+        const theme = getTheme();
+        document.documentElement.classList.add(theme);
+        localStorage.setItem('theme', JSON.stringify(theme));
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>Chaim Lev-Ari | Full-Stack Developer</title>
     <meta

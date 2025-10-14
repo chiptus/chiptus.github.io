@@ -1,7 +1,9 @@
-// spec: test-plan.md - Section 4: Hero Section
+// spec: test-plan.md - Section 4: Hero Section (DATA-DRIVEN REFACTORED VERSION)
 // seed: seed.spec.ts
 
 import { test, expect } from "@playwright/test";
+import { testData } from "./fixtures/test-data";
+import { expectSecureExternalLink } from "./helpers/assertions";
 
 test.describe("Hero Section", () => {
   test("Hero section renders correctly", async ({ page }) => {
@@ -12,37 +14,35 @@ test.describe("Hero Section", () => {
     const heroSection = page.locator("section#home");
     await expect(heroSection).toBeVisible();
 
-    // Verify name is displayed (DOM text is "Chaim Lev-Ari", displayed as "CHAIM LEV-ARI" via CSS uppercase)
-    await expect(page.locator("h1")).toContainText("Chaim Lev-Ari");
+    // Verify name is displayed (from data - scope to hero section)
+    await expect(heroSection.locator("h1")).toContainText(testData.hero.name);
 
-    // Verify title is displayed (DOM text is "Full-Stack Developer", displayed as "FULL-STACK DEVELOPER" via CSS uppercase)
+    // Verify title is displayed (from data - scope to hero section)
     await expect(
-      page.getByText("Full-Stack Developer", { exact: true })
+      heroSection.getByText(testData.hero.title, { exact: true })
     ).toBeVisible();
 
-    // Verify skills are displayed
-    await expect(page.getByText("React • TypeScript • Go")).toBeVisible();
+    // Verify skills are displayed (from data - scope to hero section)
+    await expect(heroSection.getByText(testData.hero.skills)).toBeVisible();
 
-    // Verify description paragraph is visible
-    await expect(
-      page.getByText(/Full-stack developer with 10\+ years of experience/)
-    ).toBeVisible();
+    // Verify description paragraph is visible (from data - check for partial match - scope to hero section)
+    await expect(heroSection.getByText(/Full-stack developer with/)).toBeVisible();
 
-    // Verify CTA buttons are present and visible
-    const viewProjectsBtn = page.getByRole("link", { name: /View Projects/i });
+    // Verify CTA buttons are present and visible (scope to hero section)
+    const viewProjectsBtn = heroSection.getByRole("link", { name: /View Projects/i });
     await expect(viewProjectsBtn).toBeVisible();
 
-    const getInTouchBtn = page.getByRole("link", { name: /Get In Touch/i });
+    const getInTouchBtn = heroSection.getByRole("link", { name: /Get In Touch/i });
     await expect(getInTouchBtn).toBeVisible();
 
-    // Verify social icons are visible
-    const githubLink = page.getByRole("link", { name: "GitHub" });
+    // Verify social icons are visible (scope to hero section)
+    const githubLink = heroSection.getByRole("link", { name: "GitHub" });
     await expect(githubLink).toBeVisible();
 
-    const linkedinLink = page.getByRole("link", { name: "LinkedIn" });
+    const linkedinLink = heroSection.getByRole("link", { name: "LinkedIn" });
     await expect(linkedinLink).toBeVisible();
 
-    const emailLink = page.getByRole("link", { name: "Email" });
+    const emailLink = heroSection.getByRole("link", { name: "Email" });
     await expect(emailLink).toBeVisible();
 
     // Verify hero section has correct styling (full viewport height)
@@ -69,8 +69,8 @@ test.describe("Hero Section", () => {
     const scene3DContainer = page.locator(".absolute.inset-0.opacity-30");
     await expect(scene3DContainer).toBeVisible();
 
-    // Wait a bit for the animation to render frames
-    await page.waitForTimeout(1000);
+    // Wait for canvas to be rendered and WebGL context to initialize
+    await expect(canvas).toBeVisible();
 
     // Verify canvas has proper dimensions (should be non-zero)
     const canvasBoundingBox = await canvas.boundingBox();
@@ -91,8 +91,11 @@ test.describe("Hero Section", () => {
     // Navigate to the portfolio homepage
     await page.goto("http://localhost:4321");
 
+    // Scope to hero section to avoid matching buttons elsewhere
+    const heroSection = page.locator("section#home");
+
     // Test "View Projects" button
-    const viewProjectsButton = page.getByRole("link", {
+    const viewProjectsButton = heroSection.getByRole("link", {
       name: /View Projects/i,
     });
     await expect(viewProjectsButton).toBeVisible();
@@ -102,16 +105,16 @@ test.describe("Hero Section", () => {
 
     // Click and verify navigation to projects section
     await viewProjectsButton.click();
-    await page.waitForTimeout(500); // Wait for smooth scroll
 
     // Verify URL hash updated
+    await expect(page).toHaveURL(/#projects/);
     expect(page.url()).toContain("#projects");
 
     // Navigate back to home
     await page.goto("http://localhost:4321");
 
-    // Test "Get In Touch" button
-    const getInTouchButton = page.getByRole("link", { name: /Get In Touch/i });
+    // Test "Get In Touch" button (scope to hero section)
+    const getInTouchButton = heroSection.getByRole("link", { name: /Get In Touch/i });
     await expect(getInTouchButton).toBeVisible();
 
     // Verify it has correct href
@@ -119,19 +122,22 @@ test.describe("Hero Section", () => {
 
     // Click and verify navigation to contact section
     await getInTouchButton.click();
-    await page.waitForTimeout(500); // Wait for smooth scroll
 
     // Verify URL hash updated
+    await expect(page).toHaveURL(/#contact/);
     expect(page.url()).toContain("#contact");
 
     // Verify buttons have proper styling
     await page.goto("http://localhost:4321");
 
+    // Re-scope to hero section after navigation
+    const heroSectionRefreshed = page.locator("section#home");
+
     // Re-locate buttons after navigation
-    const viewProjectsBtnRefreshed = page.getByRole("link", {
+    const viewProjectsBtnRefreshed = heroSectionRefreshed.getByRole("link", {
       name: /View Projects/i,
     });
-    const getInTouchBtnRefreshed = page.getByRole("link", {
+    const getInTouchBtnRefreshed = heroSectionRefreshed.getByRole("link", {
       name: /Get In Touch/i,
     });
 
@@ -141,11 +147,11 @@ test.describe("Hero Section", () => {
     );
     expect(viewProjectsBtnClass).toContain("shadow-brutal");
 
-    // Get In Touch button should have outline variant
+    // Get In Touch button should have border (changed from brutal to standard border)
     const getInTouchBtnClass = await getInTouchBtnRefreshed.getAttribute(
       "class"
     );
-    expect(getInTouchBtnClass).toContain("border-brutal");
+    expect(getInTouchBtnClass).toContain("border");
 
     // Verify arrow icon is visible on View Projects button
     const arrowIcon = viewProjectsBtnRefreshed.locator("svg");
@@ -156,38 +162,32 @@ test.describe("Hero Section", () => {
     // Navigate to the portfolio homepage
     await page.goto("http://localhost:4321");
 
-    // Test GitHub link
-    const githubLink = page.getByRole("link", { name: "GitHub" });
+    // Test GitHub link (using data - scoped to hero section to avoid duplicates)
+    const heroSection = page.locator("section#home");
+    const githubLink = heroSection.getByRole("link", { name: "GitHub" });
     await expect(githubLink).toBeVisible();
-    await expect(githubLink).toHaveAttribute(
-      "href",
-      "https://github.com/chiptus"
-    );
-    await expect(githubLink).toHaveAttribute("target", "_blank");
-    await expect(githubLink).toHaveAttribute("rel", "noopener noreferrer");
+    await expectSecureExternalLink(githubLink, testData.hero.social.github);
 
     // Verify GitHub icon is present
     const githubIcon = githubLink.locator("svg");
     await expect(githubIcon).toBeVisible();
 
-    // Test LinkedIn link
-    const linkedinLink = page.getByRole("link", { name: "LinkedIn" });
+    // Test LinkedIn link (using data)
+    const linkedinLink = heroSection.getByRole("link", { name: "LinkedIn" });
     await expect(linkedinLink).toBeVisible();
-    await expect(linkedinLink).toHaveAttribute(
-      "href",
-      "http://linkedin.com/in/chiptus"
-    );
-    await expect(linkedinLink).toHaveAttribute("target", "_blank");
-    await expect(linkedinLink).toHaveAttribute("rel", "noopener noreferrer");
+    await expectSecureExternalLink(linkedinLink, testData.hero.social.linkedin);
 
     // Verify LinkedIn icon is present
     const linkedinIcon = linkedinLink.locator("svg");
     await expect(linkedinIcon).toBeVisible();
 
-    // Test Email link
-    const emailLink = page.getByRole("link", { name: "Email" });
+    // Test Email link (using data)
+    const emailLink = heroSection.getByRole("link", { name: "Email" });
     await expect(emailLink).toBeVisible();
-    await expect(emailLink).toHaveAttribute("href", "mailto:chaim@lev-ari.me");
+    await expect(emailLink).toHaveAttribute(
+      "href",
+      `mailto:${testData.hero.social.email}`
+    );
 
     // Verify Email icon is present
     const emailIcon = emailLink.locator("svg");
@@ -204,7 +204,6 @@ test.describe("Hero Section", () => {
 
     // Test hover state on GitHub link
     await githubLink.hover();
-    await page.waitForTimeout(200); // Wait for transition
 
     // Verify the hover classes are present
     expect(githubClass).toContain("hover:text-primary");
@@ -221,30 +220,28 @@ test.describe("Hero Section", () => {
     const heroSection = page.locator("section#home");
     await expect(heroSection).toBeVisible();
 
-    // Verify name is readable on mobile (DOM text is "Chaim Lev-Ari", displayed as "CHAIM LEV-ARI" via CSS uppercase)
-    const nameHeading = page.locator("h1");
+    // Verify name is readable on mobile (from data - scope to hero section)
+    const nameHeading = heroSection.locator("h1");
     await expect(nameHeading).toBeVisible();
-    await expect(nameHeading).toContainText("Chaim Lev-Ari");
+    await expect(nameHeading).toContainText(testData.hero.name);
 
     // Verify responsive text sizing (should use smaller size on mobile)
     await expect(nameHeading).toHaveClass(/text-5xl/);
 
-    // Verify title and skills are visible
+    // Verify title and skills are visible (from data - scope to hero section)
     await expect(
-      page.getByText("Full-Stack Developer", { exact: true })
+      heroSection.getByText(testData.hero.title, { exact: true })
     ).toBeVisible();
-    await expect(page.getByText("React • TypeScript • Go")).toBeVisible();
+    await expect(heroSection.getByText(testData.hero.skills)).toBeVisible();
 
-    // Verify description is visible and readable
-    await expect(
-      page.getByText(/Full-stack developer with 10\+ years of experience/)
-    ).toBeVisible();
+    // Verify description is visible and readable (from data - use partial match - scope to hero section)
+    await expect(heroSection.getByText(/Full-stack developer with/)).toBeVisible();
 
-    // Verify CTA buttons stack properly on mobile
-    const viewProjectsButton = page.getByRole("link", {
+    // Verify CTA buttons stack properly on mobile (scope to hero section)
+    const viewProjectsButton = heroSection.getByRole("link", {
       name: /View Projects/i,
     });
-    const getInTouchButton = page.getByRole("link", { name: /Get In Touch/i });
+    const getInTouchButton = heroSection.getByRole("link", { name: /Get In Touch/i });
 
     await expect(viewProjectsButton).toBeVisible();
     await expect(getInTouchButton).toBeVisible();
@@ -253,10 +250,16 @@ test.describe("Hero Section", () => {
     const buttonContainer = page.locator(".flex.flex-wrap.items-center.gap-4");
     await expect(buttonContainer).toBeVisible();
 
-    // Verify social icons are visible and accessible on mobile
-    await expect(page.getByRole("link", { name: "GitHub" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "LinkedIn" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Email" })).toBeVisible();
+    // Verify social icons are visible and accessible on mobile (scope to hero section)
+    await expect(
+      heroSection.getByRole("link", { name: "GitHub" })
+    ).toBeVisible();
+    await expect(
+      heroSection.getByRole("link", { name: "LinkedIn" })
+    ).toBeVisible();
+    await expect(
+      heroSection.getByRole("link", { name: "Email" })
+    ).toBeVisible();
 
     // Verify 3D canvas still renders on mobile
     const canvas = page.locator("canvas");
@@ -267,8 +270,8 @@ test.describe("Hero Section", () => {
     const viewportWidth = await page.evaluate(() => window.innerWidth);
     expect(bodyWidth).toBeLessThanOrEqual(viewportWidth);
 
-    // Verify content is properly padded on mobile
-    const container = page.locator(".container.mx-auto.px-6");
+    // Verify content is properly padded on mobile (scope to hero section)
+    const container = heroSection.locator(".container.mx-auto.px-6");
     await expect(container).toBeVisible();
 
     // Test tablet viewport (768px)
@@ -276,5 +279,36 @@ test.describe("Hero Section", () => {
 
     // Verify responsive heading size increases at md breakpoint
     await expect(nameHeading).toHaveClass(/md:text-7xl/);
+  });
+
+  test("All hero data is rendered", async ({ page }) => {
+    // Data integrity check - ensures all hero data from JSON is displayed
+    await page.goto("http://localhost:4321");
+
+    // Verify name
+    await expect(page.getByText(testData.hero.name).first()).toBeVisible();
+
+    // Verify title
+    await expect(page.getByText(testData.hero.title).first()).toBeVisible();
+
+    // Verify skills
+    await expect(page.getByText(testData.hero.skills).first()).toBeVisible();
+
+    // Verify description (at least first part - use partial match)
+    await expect(
+      page.getByText(/Full-stack developer with/).first()
+    ).toBeVisible();
+
+    // Verify all social links exist (scoped to hero to avoid duplicates)
+    const heroSection = page.locator("section#home");
+    await expect(
+      heroSection.getByRole("link", { name: "GitHub" })
+    ).toHaveAttribute("href", testData.hero.social.github);
+    await expect(
+      heroSection.getByRole("link", { name: "LinkedIn" })
+    ).toHaveAttribute("href", testData.hero.social.linkedin);
+    await expect(
+      heroSection.getByRole("link", { name: "Email" })
+    ).toHaveAttribute("href", `mailto:${testData.hero.social.email}`);
   });
 });

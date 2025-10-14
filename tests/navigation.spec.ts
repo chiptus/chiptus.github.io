@@ -1,17 +1,17 @@
 // spec: test-plan.md (Section 2: Navigation Bar)
 // seed: seed.spec.ts
 
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('Navigation Bar', () => {
+test.describe("Navigation Bar", () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to the application before each test
-    await page.goto('http://localhost:4321');
+    await page.goto("http://localhost:4321");
   });
 
-  test('Navigation bar is fixed at top', async ({ page }) => {
+  test("Navigation bar is fixed at top", async ({ page }) => {
     // 1. Verify navigation bar is visible at the top
-    const nav = page.locator('nav, header').first();
+    const nav = page.locator("nav, header").first();
     await expect(nav).toBeVisible();
 
     // 2. Get initial position of the nav bar
@@ -21,7 +21,6 @@ test.describe('Navigation Bar', () => {
 
     // 3. Scroll down the page
     await page.evaluate(() => window.scrollTo(0, 500));
-    await page.waitForTimeout(300);
 
     // 4. Verify nav bar is still at the top (fixed position)
     const scrolledBox = await nav.boundingBox();
@@ -29,13 +28,15 @@ test.describe('Navigation Bar', () => {
     expect(scrolledBox?.y).toBeLessThanOrEqual(10);
 
     // 5. Verify nav bar has fixed position CSS
-    const position = await nav.evaluate((el) => window.getComputedStyle(el).position);
-    expect(position).toBe('fixed');
+    const position = await nav.evaluate(
+      (el) => window.getComputedStyle(el).position
+    );
+    expect(position).toBe("fixed");
   });
 
-  test('All navigation links are present', async ({ page }) => {
+  test("All navigation links are present", async ({ page }) => {
     // 1. Wait for navigation to be visible
-    const nav = page.locator('nav, header').first();
+    const nav = page.locator("nav, header").first();
     await expect(nav).toBeVisible();
 
     // 2. Set viewport to desktop size to ensure links are visible
@@ -54,7 +55,9 @@ test.describe('Navigation Bar', () => {
     await expect(nowLink).toBeVisible();
 
     // 6. Check for Projects link
-    const projectsLink = nav.locator('a[href="#projects"], a:has-text("Projects")');
+    const projectsLink = nav.locator(
+      'a[href="#projects"], a:has-text("Projects")'
+    );
     await expect(projectsLink).toBeVisible();
 
     // 7. Blog link is currently hidden (commented out in Navigation.tsx)
@@ -62,42 +65,46 @@ test.describe('Navigation Bar', () => {
     // await expect(blogLink).toBeVisible();
 
     // 8. Check for Contact link
-    const contactLink = nav.locator('a[href="#contact"], a:has-text("Contact")');
+    const contactLink = nav.locator(
+      'a[href="#contact"], a:has-text("Contact")'
+    );
     await expect(contactLink).toBeVisible();
 
     // 9. Verify theme toggle is present (use .first() because there are desktop + mobile toggles)
-    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]').first();
+    const themeToggle = nav
+      .locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]')
+      .first();
     await expect(themeToggle).toBeVisible();
   });
 
-  test('Navigation links scroll to sections', async ({ page }) => {
+  test("Navigation links scroll to sections", async ({ page }) => {
     // Set viewport to desktop size
     await page.setViewportSize({ width: 1280, height: 720 });
 
-    const nav = page.locator('nav, header').first();
+    const nav = page.locator("nav, header").first();
 
     // 1. Click "Journey" link and verify scroll to #about section
     await nav.locator('a[href="#about"], a:has-text("Journey")').click();
-    await page.waitForTimeout(500);
-    expect(page.url()).toContain('#about');
+    await expect(page).toHaveURL(/#about/);
+    expect(page.url()).toContain("#about");
 
-    const aboutSection = page.locator('#about');
+    const aboutSection = page.locator("#about");
     await expect(aboutSection).toBeInViewport();
 
     // 2. Click "Now" link and verify scroll to #now section
     await nav.locator('a[href="#now"], a:has-text("Now")').click();
-    await page.waitForTimeout(500);
-    expect(page.url()).toContain('#now');
+    await expect(page).toHaveURL(/#now/);
+    expect(page.url()).toContain("#now");
 
-    const nowSection = page.locator('#now');
+    const nowSection = page.locator("#now");
     await expect(nowSection).toBeInViewport();
 
     // 3. Click "Projects" link and verify scroll to #projects section
     await nav.locator('a[href="#projects"], a:has-text("Projects")').click();
-    await page.waitForTimeout(500);
-    expect(page.url()).toContain('#projects');
+    await expect(page).toHaveURL(/#projects/);
+    expect(page.url()).toContain("#projects");
 
-    const projectsSection = page.locator('#projects');
+    const projectsSection = page.locator("#projects");
     await expect(projectsSection).toBeInViewport();
 
     // 4. Blog link is currently hidden (commented out in Navigation.tsx)
@@ -109,37 +116,39 @@ test.describe('Navigation Bar', () => {
 
     // 5. Click "Contact" link and verify scroll to #contact section
     await nav.locator('a[href="#contact"], a:has-text("Contact")').click();
-    await page.waitForTimeout(500);
-    expect(page.url()).toContain('#contact');
+    await expect(page).toHaveURL(/#contact/);
+    expect(page.url()).toContain("#contact");
 
-    const contactSection = page.locator('#contact');
+    const contactSection = page.locator("#contact");
     await expect(contactSection).toBeInViewport();
 
     // 6. Click "CL" logo and verify scroll back to top/home
     await nav.locator('a[href="#home"], a[href="/"]').first().click();
-    await page.waitForTimeout(500);
+
+    // Wait for scroll to complete by checking scroll position
+    await page.waitForFunction(() => window.scrollY < 100, { timeout: 5000 });
 
     const scrollPosition = await page.evaluate(() => window.scrollY);
     expect(scrollPosition).toBeLessThan(100);
   });
 
-  test('Scroll changes nav style', async ({ page }) => {
-    const nav = page.locator('nav, header').first();
+  test("Scroll changes nav style", async ({ page }) => {
+    const nav = page.locator("nav, header").first();
     await expect(nav).toBeVisible();
 
     // 1. Check initial state at top of page
     await page.evaluate(() => window.scrollTo(0, 0));
-    await page.waitForTimeout(200);
 
     // 2. Scroll down more than 50 pixels
     await page.evaluate(() => window.scrollTo(0, 100));
-    await page.waitForTimeout(400);
 
     // 3. Verify navigation background changes on scroll (backdrop-blur effect)
     const hasBackdropBlur = await nav.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return style.backdropFilter.includes('blur') ||
-             el.className.includes('backdrop-blur');
+      return (
+        style.backdropFilter.includes("blur") ||
+        el.className.includes("backdrop-blur")
+      );
     });
 
     expect(hasBackdropBlur).toBeTruthy();
@@ -147,18 +156,17 @@ test.describe('Navigation Bar', () => {
     // 4. Verify shadow appears on scroll
     const hasShadow = await nav.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return style.boxShadow !== 'none' ||
-             el.className.includes('shadow');
+      return style.boxShadow !== "none" || el.className.includes("shadow");
     });
 
     expect(hasShadow).toBeTruthy();
   });
 
-  test('Mobile responsive navigation', async ({ page }) => {
+  test("Mobile responsive navigation", async ({ page }) => {
     // 1. Set viewport to mobile size (<768px width)
     await page.setViewportSize({ width: 375, height: 667 });
 
-    const nav = page.locator('nav, header').first();
+    const nav = page.locator("nav, header").first();
     await expect(nav).toBeVisible();
 
     // 2. Verify "CL" logo is visible on mobile
@@ -166,29 +174,30 @@ test.describe('Navigation Bar', () => {
     await expect(logo).toBeVisible();
 
     // 3. Verify theme toggle is visible on mobile (use .first() because there are desktop + mobile toggles)
-    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]').first();
+    const themeToggle = nav.locator(
+      'div[aria-label="Mobile navigation"] button[aria-label="Toggle theme"]'
+    );
     await expect(themeToggle).toBeVisible();
 
     // 4. Verify desktop navigation links are hidden on mobile
-    const journeyLink = nav.locator('a[href="#about"], a:has-text("Journey")');
-    const nowLink = nav.locator('a[href="#now"], a:has-text("Now")');
-    const projectsLink = nav.locator('a[href="#projects"], a:has-text("Projects")');
-    const contactLink = nav.locator('a[href="#contact"], a:has-text("Contact")');
+    // Desktop nav is in the div with aria-label="Desktop navigation" and should be hidden on mobile
+    const desktopNav = nav.locator('div[aria-label="Desktop navigation"]');
+    const isDesktopNavVisible = await desktopNav.isVisible().catch(() => false);
 
-    // Check if links are hidden (not visible)
-    const isJourneyVisible = await journeyLink.isVisible().catch(() => false);
-    const isNowVisible = await nowLink.isVisible().catch(() => false);
-    const isProjectsVisible = await projectsLink.isVisible().catch(() => false);
-    const isContactVisible = await contactLink.isVisible().catch(() => false);
-
-    const visibleCount = [isJourneyVisible, isNowVisible, isProjectsVisible, isContactVisible]
-      .filter(Boolean).length;
-
-    expect(visibleCount).toBe(0);
+    // Desktop navigation should be hidden on mobile (375px width)
+    expect(isDesktopNavVisible).toBe(false);
 
     // 5. Test at the exact breakpoint (768px) - desktop navigation should appear
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.waitForTimeout(200);
+
+    // Desktop navigation should now be visible at 768px
+    await expect(desktopNav).toBeVisible();
+
+    // Check individual links within desktop nav
+    const journeyLink = desktopNav.locator('a[href="#about"]');
+    const nowLink = desktopNav.locator('a[href="#now"]');
+    const projectsLink = desktopNav.locator('a[href="#projects"]');
+    const contactLink = desktopNav.locator('a[href="#contact"]');
 
     await expect(journeyLink).toBeVisible();
     await expect(nowLink).toBeVisible();
@@ -198,11 +207,11 @@ test.describe('Navigation Bar', () => {
     await expect(contactLink).toBeVisible();
   });
 
-  test('Navigation links have hover states', async ({ page }) => {
+  test("Navigation links have hover states", async ({ page }) => {
     // Set viewport to desktop size
     await page.setViewportSize({ width: 1280, height: 720 });
 
-    const nav = page.locator('nav, header').first();
+    const nav = page.locator("nav, header").first();
     const journeyLink = nav.locator('a[href="#about"], a:has-text("Journey")');
 
     // 1. Verify link is visible
@@ -210,30 +219,29 @@ test.describe('Navigation Bar', () => {
 
     // 2. Hover over the link
     await journeyLink.hover();
-    await page.waitForTimeout(100);
 
     // 3. Verify cursor changes to pointer
-    const cursor = await journeyLink.evaluate((el) =>
-      window.getComputedStyle(el).cursor
+    const cursor = await journeyLink.evaluate(
+      (el) => window.getComputedStyle(el).cursor
     );
-    expect(cursor).toBe('pointer');
+    expect(cursor).toBe("pointer");
 
     // 4. Verify hover state applies (check for transition properties)
-    const transition = await journeyLink.evaluate((el) =>
-      window.getComputedStyle(el).transition
+    const transition = await journeyLink.evaluate(
+      (el) => window.getComputedStyle(el).transition
     );
     expect(transition).toBeTruthy();
   });
 
-  test('Navigation bar accessibility', async ({ page }) => {
+  test("Navigation bar accessibility", async ({ page }) => {
     // Set viewport to desktop
     await page.setViewportSize({ width: 1280, height: 720 });
 
-    const nav = page.locator('nav, header').first();
+    const nav = page.locator("nav, header").first();
 
     // 1. Verify navigation has semantic HTML
     const navElement = await nav.evaluate((el) => el.tagName.toLowerCase());
-    expect(['nav', 'header']).toContain(navElement);
+    expect(["nav", "header"]).toContain(navElement);
 
     // 2. Verify all links are keyboard accessible
     const journeyLink = nav.locator('a[href="#about"], a:has-text("Journey")');
@@ -241,18 +249,20 @@ test.describe('Navigation Bar', () => {
     await expect(journeyLink).toBeFocused();
 
     // 3. Press Enter to activate the link
-    await page.keyboard.press('Enter');
-    await page.waitForTimeout(500);
-    expect(page.url()).toContain('#about');
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/#about/);
+    expect(page.url()).toContain("#about");
 
     // 4. Verify theme toggle is keyboard accessible (use .first() because there are desktop + mobile toggles)
-    const themeToggle = nav.locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]').first();
+    const themeToggle = nav
+      .locator('button[aria-label*="theme" i], button[aria-label*="Toggle" i]')
+      .first();
     await themeToggle.focus();
     await expect(themeToggle).toBeFocused();
 
     // 5. Verify theme toggle has aria-label
-    const ariaLabel = await themeToggle.getAttribute('aria-label');
+    const ariaLabel = await themeToggle.getAttribute("aria-label");
     expect(ariaLabel).toBeTruthy();
-    expect(ariaLabel?.toLowerCase()).toContain('theme');
+    expect(ariaLabel?.toLowerCase()).toContain("theme");
   });
 });

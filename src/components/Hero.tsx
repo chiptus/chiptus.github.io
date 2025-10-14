@@ -60,7 +60,7 @@ export const Hero = ({ hero }: HeroProps) => {
               href={hero.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors p-2 -m-2"
               aria-label="GitHub"
             >
               <Github className="h-6 w-6" />
@@ -69,14 +69,14 @@ export const Hero = ({ hero }: HeroProps) => {
               href={hero.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors p-2 -m-2"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-6 w-6" />
             </a>
             <a
               href={`mailto:${hero.social.email}`}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors p-2 -m-2"
               aria-label="Email"
             >
               <Mail className="h-6 w-6" />

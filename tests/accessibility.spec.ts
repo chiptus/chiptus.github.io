@@ -35,7 +35,6 @@ test.describe("Accessibility", () => {
       ) {
         // Found theme toggle - press Enter to activate
         await page.keyboard.press("Enter");
-        await page.waitForTimeout(200);
 
         // Verify theme changed
         const htmlClass = await page.locator("html").getAttribute("class");
@@ -197,10 +196,11 @@ test.describe("Accessibility", () => {
     expect(h2Count).toBeGreaterThan(0);
 
     // Verify h2 headings are section titles (DOM text is title case, displayed as uppercase via CSS)
-    const workH2 = page.locator('h2:has-text("Work Experience")');
+    // Use section scoping to avoid strict mode violations
+    const workH2 = page.locator('section#work h2:has-text("Work Experience")');
     await expect(workH2).toBeVisible();
 
-    const projectsH2 = page.locator('h2:has-text("Side Projects")');
+    const projectsH2 = page.locator('section#projects h2:has-text("Side Projects")');
     await expect(projectsH2).toBeVisible();
 
     // Check for h3 (card titles)
@@ -282,8 +282,9 @@ test.describe("Accessibility", () => {
   });
 
   test("Color contrast - Basic check", async ({ page }) => {
-    // Check hero text contrast
-    const heroTitle = page.locator("h1");
+    // Check hero text contrast (scope to hero section)
+    const heroSection = page.locator("section#home");
+    const heroTitle = heroSection.locator("h1");
     await expect(heroTitle).toBeVisible();
 
     const titleColor = await heroTitle.evaluate((el) => {
@@ -377,6 +378,9 @@ test.describe("Accessibility", () => {
   });
 
   test("Interactive elements have appropriate roles", async ({ page }) => {
+    // Wait for React hydration by checking if theme toggle is interactive
+    await page.waitForSelector('button[aria-label*="theme" i]', { state: 'visible', timeout: 5000 });
+
     // Buttons should have button role
     const buttons = page.locator("button");
     const buttonCount = await buttons.count();

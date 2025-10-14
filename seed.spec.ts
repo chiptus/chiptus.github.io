@@ -49,8 +49,10 @@ export { expect };
 
 // Helper function to wait for section to be in viewport
 export async function scrollToSection(page: Page, sectionId: string) {
-  await page.locator(`#${sectionId}`).scrollIntoViewIfNeeded();
-  await page.waitForTimeout(300); // Wait for smooth scroll animation
+  const section = page.locator(`#${sectionId}`);
+  await section.scrollIntoViewIfNeeded();
+  // Wait for section to be in viewport instead of arbitrary timeout
+  await expect(section).toBeInViewport();
 }
 
 // Helper function to check for horizontal overflow

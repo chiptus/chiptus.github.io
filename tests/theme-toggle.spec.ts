@@ -68,7 +68,10 @@ test.describe('Theme Toggle', () => {
     // Navigate to the page
     await page.goto(baseURL);
 
-    // 1. Verify default localStorage value
+    // Wait for page to be ready
+    await page.waitForLoadState('domcontentloaded');
+
+    // 1. Verify default localStorage value (set by inline script in Layout.astro)
     let themeStorage = await page.evaluate(() => {
       const item = localStorage.getItem('theme');
       return item ? JSON.parse(item) : null;
@@ -79,6 +82,10 @@ test.describe('Theme Toggle', () => {
     const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
     await themeToggle.click();
 
+    // Wait for theme to change
+    const html = page.locator('html');
+    await expect(html).toHaveClass(/dark/);
+
     // 3. Verify localStorage updated to dark
     themeStorage = await page.evaluate(() => {
       const item = localStorage.getItem('theme');
@@ -88,6 +95,9 @@ test.describe('Theme Toggle', () => {
 
     // 4. Toggle back to light mode
     await themeToggle.click();
+
+    // Wait for theme to change back
+    await expect(html).toHaveClass(/light/);
 
     // 5. Verify localStorage updated to light
     themeStorage = await page.evaluate(() => {
@@ -147,8 +157,14 @@ test.describe('Theme Toggle', () => {
   });
 
   test('Theme toggle is keyboard accessible', async ({ page }) => {
+    // Set viewport to desktop size BEFORE navigating to ensure we're testing the desktop toggle
+    await page.setViewportSize({ width: 1280, height: 720 });
+
     // Navigate to the page
     await page.goto(baseURL);
+
+    // Wait for page to fully load and React hydration
+    await page.waitForLoadState('domcontentloaded');
 
     // 1. Tab to theme toggle button
     await page.keyboard.press('Tab');
@@ -168,11 +184,11 @@ test.describe('Theme Toggle', () => {
       await page.keyboard.press('Tab');
     }
 
-    expect(focused).toBe(true);
+    expect(focused, 'Should be able to focus theme toggle via keyboard').toBe(true);
 
-    // 2. Verify button is focused (use .first() because there are desktop + mobile toggles)
-    const themeToggle = page.getByRole('button', { name: /toggle theme/i }).first();
-    await expect(themeToggle).toBeFocused();
+    // 2. Get the currently focused element (should be theme toggle)
+    const focusedToggle = page.locator(':focus');
+    await expect(focusedToggle).toHaveAttribute('aria-label', 'Toggle theme');
 
     // 3. Press Enter to activate theme toggle
     const html = page.locator('html');
