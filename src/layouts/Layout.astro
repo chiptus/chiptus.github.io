@@ -1,10 +1,14 @@
 ---
 import "../styles/global.css";
 
-const siteUrl = import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
-  : Astro.url.origin;
-const ogImageUrl = new URL("/og-image.png", Astro.url).toString();
+const baseUrl =
+  import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ||
+  import.meta.env.SITE_URL ||
+  "chaim.lev-ari.me";
+
+const siteUrl = `https://${baseUrl}`;
+
+const ogImageUrl = `${siteUrl}/og-image.png`;
 
 const structuredData = {
   "@context": "https://schema.org",
