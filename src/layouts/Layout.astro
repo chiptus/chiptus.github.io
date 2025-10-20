@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 const baseUrl =
   import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ||
@@ -104,6 +105,7 @@ const structuredData = {
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
+    <Analytics />
   </head>
   <body>
     <slot />
